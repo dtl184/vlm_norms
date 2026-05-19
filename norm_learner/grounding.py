@@ -322,7 +322,7 @@ def build_vlm_prompt(
         for gn in grounded_norms:
             lines.append(
                 f"- [{gn.norm_type.upper()}] {gn.description} "
-                f"(confidence {gn.confidence:.2f}, iteration {gn.iteration})"
+                f"(iteration {gn.iteration})"
             )
         lines.append("")
 
@@ -335,7 +335,6 @@ def build_vlm_prompt(
         "Respond with a JSON array.  Each element must have these fields:\n"
         '  "type"       : "prohibition" | "obligation" | "convention"\n'
         '  "description": natural-language description of the norm\n'
-        '  "confidence" : float 0.0–1.0\n'
         '  "reasoning"  : one-sentence justification\n'
         "\nOnly output the JSON array — no prose before or after."
     )
@@ -391,7 +390,6 @@ def parse_vlm_response(
             GroundedNorm(
                 description=description,
                 norm_type=item.get("type", "unknown"),
-                confidence=float(item.get("confidence", 0.0)),
                 reasoning=item.get("reasoning", ""),
                 source_hypothesis_ids=list(range(len(abstract_hypotheses))),
                 iteration=iteration,

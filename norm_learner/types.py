@@ -45,7 +45,6 @@ class AbstractNormHypothesis:
     symbolic_summary: str
     # Filled by VLM grounding; None until queried
     grounded_norm: str | None = None
-    grounded_confidence: float = 0.0
     # How many distinct trajectories support this hypothesis
     supporting_count: int = 1
 
@@ -59,7 +58,6 @@ class GroundedNorm:
     """Natural-language norm produced by grounding abstract hypotheses via VLM."""
     description: str
     norm_type: str          # "prohibition" | "obligation" | "convention" | ...
-    confidence: float       # 0.0 – 1.0 as reported by VLM
     reasoning: str
     # Indices into the abstract_hypotheses list that this norm was derived from
     source_hypothesis_ids: list[int]

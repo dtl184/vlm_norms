@@ -55,7 +55,6 @@ class MockVLM(VLMInterface):
             {
                 "type": "unknown",
                 "description": "Mock VLM: no real model attached.",
-                "confidence": 0.0,
                 "reasoning": "MockVLM returns this stub for testing purposes.",
             }
         ])
