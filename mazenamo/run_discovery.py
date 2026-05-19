@@ -146,7 +146,6 @@ def main() -> None:
                     "the goal (G). All observed agents detour to interact with "
                     "the box at (2,4) prior to moving toward the goal."
                 ),
-                "confidence": 0.88,
                 "reasoning": (
                     "Agents consistently take longer paths that pass through "
                     "the box location, even though a shorter direct route to "
@@ -160,7 +159,6 @@ def main() -> None:
                     "Agents must not move directly north from the start area "
                     "toward the goal without first visiting the box."
                 ),
-                "confidence": 0.75,
                 "reasoning": (
                     "The direct northward path from the lower grid to the goal "
                     "is consistently avoided; instead, agents go west then "
@@ -187,7 +185,7 @@ def main() -> None:
         print(f"\n  ── VLM grounded {len(norms)} norm(s) ──")
         for n in norms:
             print(f"  [{n.norm_type.upper()}] {n.description}")
-            print(f"   conf={n.confidence:.2f}  reasoning: {n.reasoning}")
+            print(f"   reasoning: {n.reasoning}")
 
     learner = NormLearner(
         env, vlm,
@@ -275,7 +273,6 @@ def main() -> None:
         print("  (No grounded norms — use --vlm api or --vlm local for real output)")
     for gn in grounded:
         print(f"\n  [{gn.norm_type.upper()}]  {gn.description}")
-        print(f"  confidence : {gn.confidence:.2f}")
         print(f"  reasoning  : {gn.reasoning}")
         print(f"  vlm round  : {gn.iteration}")
 
