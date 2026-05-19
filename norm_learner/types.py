@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Literal
+from typing import Any, Dict, List, Literal, Tuple
 
 # ---------------------------------------------------------------------------
 # Core primitives — generic across all environments.
@@ -10,9 +10,9 @@ from typing import Any, Literal
 
 State = Any
 Action = Any
-StateActionPair = tuple[State, Action]
-Trajectory = list[StateActionPair]
-WorldState = dict[str, Any]  # semantic feature dict extracted by the environment
+StateActionPair = Tuple[State, Action]
+Trajectory = List[StateActionPair]
+WorldState = Dict[str, Any]  # semantic feature dict extracted by the environment
 
 
 # ---------------------------------------------------------------------------
