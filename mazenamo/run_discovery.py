@@ -39,6 +39,7 @@ from norm_learner import (
     NormLearner,
     OpenAICompatibleVLM,
 )
+from norm_learner.grounding import build_abstract_hypotheses, build_vlm_prompt
 
 from mazenamo import (
     DEFAULT_LAYOUT,
@@ -101,6 +102,8 @@ def main() -> None:
     parser.add_argument("--api-key", default="ollama")
     parser.add_argument("--interval", type=int, default=5,
                         help="Query VLM every N trajectories")
+    parser.add_argument("--print-prompt", action="store_true",
+                        help="Print the VLM prompt before the first query and exit")
     parser.add_argument("--repeat", type=int, default=3,
                         help="Repeat each start position N times")
     args = parser.parse_args()
@@ -209,6 +212,18 @@ def main() -> None:
                 f"permissions={len(sym.permissions):3d}  "
                 f"vlm_queries={learner.vlm_query_count}"
             )
+
+    # --- Print prompt and exit if requested --------------------------------
+    if args.print_prompt:
+        hyps = build_abstract_hypotheses(
+            learner.get_symbolic_state(), env, learner.get_trajectory_records()
+        )
+        prompt = build_vlm_prompt(hyps, [], env, learner.n_trajectories)
+        print("\n" + "=" * 60)
+        print("VLM PROMPT")
+        print("=" * 60)
+        print(prompt)
+        return
 
     # Final VLM query if not already triggered
     if learner.n_trajectories % args.interval != 0:
