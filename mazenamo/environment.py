@@ -30,6 +30,7 @@ from .env import (
     DELTAS,
     EAST,
     NORTH,
+    PUSH,
     SOUTH,
     WEST,
     GridConfig,
@@ -126,7 +127,11 @@ class MazeNamoEnvironment(EnvironmentInterface):
 
     def successor(self, state: State, action: Action) -> State | None:
         x, y = self.state_to_xy(state)
-        dx, dy = DELTAS[action]
+        # PUSH acts as NORTH (agent moves into box, box displaced one cell north)
+        move = NORTH if action == PUSH else action
+        if move not in DELTAS:
+            return None
+        dx, dy = DELTAS[move]
         nx, ny = x + dx, y + dy
         if not self.is_passable(nx, ny):
             return None

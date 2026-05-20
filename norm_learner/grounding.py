@@ -349,7 +349,7 @@ def build_vlm_prompt(
         "present in this environment.  Each norm should capture a general "
         "rule that a rational agent appears to be following.\n"
         "Respond with a JSON array.  Each element must have these fields:\n"
-        '  "type"       : "prohibition" | "obligation" | "convention"\n'
+        '  "type"       : "prohibition" | "obligation" | "permission"\n'
         '  "description": natural-language description of the norm\n'
         '  "reasoning"  : one-sentence justification\n'
         "\nOnly output the JSON array — no prose before or after."

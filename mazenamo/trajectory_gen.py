@@ -27,7 +27,7 @@ if str(ROOT) not in sys.path:
 
 from norm_learner.types import Trajectory
 
-from .env import NORTH, GridConfig
+from .env import NORTH, PUSH, GridConfig
 from .environment import MazeNamoEnvironment
 
 
@@ -56,8 +56,8 @@ def norm_following_trajectory(
         return None
     phase1 = plans1[0]
 
-    # Phase 2: the actual push (one NORTH step from push_pos)
-    push_step = [(s_push_pos, NORTH)]
+    # Phase 2: the actual push — recorded as PUSH action, not NORTH
+    push_step = [(s_push_pos, PUSH)]
 
     # Phase 3: post-push position → goal
     plans3 = env.plan(s_post_push, s_goal)

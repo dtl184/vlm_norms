@@ -19,9 +19,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Optional
 
-NORTH, SOUTH, EAST, WEST = 0, 1, 2, 3
-ACTION_NAMES = {NORTH: "NORTH", SOUTH: "SOUTH", EAST: "EAST", WEST: "WEST"}
+NORTH, SOUTH, EAST, WEST, PUSH = 0, 1, 2, 3, 4
+ACTION_NAMES = {NORTH: "NORTH", SOUTH: "SOUTH", EAST: "EAST", WEST: "WEST", PUSH: "PUSH"}
 DELTAS = {NORTH: (0, -1), SOUTH: (0, 1), EAST: (1, 0), WEST: (-1, 0)}
+# PUSH is not in DELTAS — the norm-unaware planner never generates it.
 
 
 # ---------------------------------------------------------------------------
