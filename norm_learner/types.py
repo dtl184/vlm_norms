@@ -60,9 +60,12 @@ class GroundedNorm:
     norm_type: str          # "prohibition" | "obligation" | "convention" | ...
     reasoning: str
     # Indices into the abstract_hypotheses list that this norm was derived from
-    source_hypothesis_ids: list[int]
+    source_hypothesis_ids: List[int]
     # Which VLM query round produced this (0-indexed)
     iteration: int
+    # Snapshot of symbolic pairs that backed this norm at grounding time;
+    # used to detect when later trajectories contradict it
+    snapshot_pairs: List[StateActionPair] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------

@@ -68,7 +68,7 @@ class NormLearner:
         self,
         env: EnvironmentInterface,
         vlm: VLMInterface,
-        vlm_query_interval: int = 10,
+        vlm_query_interval: int = 1,
         on_vlm_result: Callable[[list[GroundedNorm]], None] | None = None,
     ) -> None:
         self.env = env
@@ -79,9 +79,11 @@ class NormLearner:
         self._symbolic_state = NormLearnerState()
         self._trajectory_records: list[TrajectoryRecord] = []
         self._grounded_norms: list[GroundedNorm] = []
+        self._rejected_norms: list[GroundedNorm] = []
         # Full history of grounded norms across all VLM query rounds
         self._grounded_norm_history: list[list[GroundedNorm]] = []
         self._vlm_query_count: int = 0
+        self._last_prompt: str | None = None
 
     # ------------------------------------------------------------------
     # Public API
@@ -101,6 +103,7 @@ class NormLearner:
         self._trajectory_records.append(record)
 
         self._symbolic_state = norm_discovery(tau, self.env, self._symbolic_state)
+        self._verify_grounded_norms()
 
         n = len(self._trajectory_records)
         if self.vlm_query_interval > 0 and n % self.vlm_query_interval == 0:
@@ -118,6 +121,15 @@ class NormLearner:
     def get_grounded_norms(self) -> list[GroundedNorm]:
         """Return the most-recent list of VLM-grounded norms."""
         return list(self._grounded_norms)
+
+    def get_rejected_norms(self) -> list[GroundedNorm]:
+        """Return norms that were rejected because later trajectories contradicted them."""
+        return list(self._rejected_norms)
+
+    @property
+    def last_prompt(self) -> str | None:
+        """The VLM prompt used in the most recent query, or None if no query yet."""
+        return self._last_prompt
 
     def get_grounded_norm_history(self) -> list[list[GroundedNorm]]:
         """Return grounded norms from every VLM query round, oldest first."""
@@ -149,6 +161,25 @@ class NormLearner:
     # Internal
     # ------------------------------------------------------------------
 
+    def _verify_grounded_norms(self) -> None:
+        """Drop grounded norms whose symbolic basis has been pruned away."""
+        current_leaf_pairs: set = set()
+        for h in self._symbolic_state.hyp_prohibitions:
+            for leaf in h.leaf_nodes():
+                if leaf.sequence:
+                    current_leaf_pairs.update(leaf.sequence)
+
+        surviving: list[GroundedNorm] = []
+        for norm in self._grounded_norms:
+            if norm.snapshot_pairs and not any(
+                p in current_leaf_pairs for p in norm.snapshot_pairs
+            ):
+                logger.info("Norm contradicted by new trajectory, rejecting: %s", norm.description)
+                self._rejected_norms.append(norm)
+            else:
+                surviving.append(norm)
+        self._grounded_norms = surviving
+
     def _run_vlm_query(self) -> None:
         abstract_hyps = build_abstract_hypotheses(
             self._symbolic_state, self.env, self._trajectory_records
@@ -162,6 +193,7 @@ class NormLearner:
             self._grounded_norms,
             len(self._trajectory_records),
         )
+        self._last_prompt = prompt
         logger.debug("VLM prompt (first 500 chars):\n%s", prompt[:500])
 
         try:

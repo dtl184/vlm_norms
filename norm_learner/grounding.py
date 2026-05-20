@@ -373,6 +373,10 @@ def parse_vlm_response(
         logger.warning("VLM response is not a JSON array.")
         return []
 
+    all_pairs: list = []
+    for hyp in abstract_hypotheses:
+        all_pairs.extend(hyp.symbolic_pairs)
+
     grounded: list[GroundedNorm] = []
     for item in raw_list:
         if not isinstance(item, dict):
@@ -387,6 +391,7 @@ def parse_vlm_response(
                 reasoning=item.get("reasoning", ""),
                 source_hypothesis_ids=list(range(len(abstract_hypotheses))),
                 iteration=iteration,
+                snapshot_pairs=list(all_pairs),
             )
         )
 

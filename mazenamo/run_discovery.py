@@ -39,7 +39,6 @@ from norm_learner import (
     NormLearner,
     OpenAICompatibleVLM,
 )
-from norm_learner.grounding import build_abstract_hypotheses, build_vlm_prompt
 
 from mazenamo import (
     DEFAULT_LAYOUT,
@@ -100,12 +99,10 @@ def main() -> None:
                         help="Torch dtype: auto, bfloat16, float16, float32")
     parser.add_argument("--api-url", default="http://localhost:11434/v1")
     parser.add_argument("--api-key", default="ollama")
-    parser.add_argument("--interval", type=int, default=5,
-                        help="Query VLM every N trajectories")
-    parser.add_argument("--print-prompt", action="store_true",
-                        help="Print the VLM prompt before the first query and exit")
-    parser.add_argument("--repeat", type=int, default=3,
-                        help="Repeat each start position N times")
+    parser.add_argument("--interval", type=int, default=1,
+                        help="Query VLM every N trajectories (default: every trajectory)")
+    parser.add_argument("--repeat", type=int, default=1,
+                        help="Repeat each start position N times (default: 1 = unique starts)")
     args = parser.parse_args()
 
     # --- Build environment -------------------------------------------------
@@ -184,17 +181,7 @@ def main() -> None:
         print(f"VLM backend : API at {args.api_url}, model={args.model}\n")
 
     # --- Set up learner ----------------------------------------------------
-    def on_vlm(norms):
-        print(f"\n  ── VLM grounded {len(norms)} norm(s) ──")
-        for n in norms:
-            print(f"  [{n.norm_type.upper()}] {n.description}")
-            print(f"   reasoning: {n.reasoning}")
-
-    learner = NormLearner(
-        env, vlm,
-        vlm_query_interval=args.interval,
-        on_vlm_result=on_vlm,
-    )
+    learner = NormLearner(env, vlm, vlm_query_interval=args.interval)
 
     # --- Generate & process trajectories ----------------------------------
     trajectories = generate_training_set(env, TRAINING_STARTS, repeat=args.repeat)
@@ -202,33 +189,29 @@ def main() -> None:
           f"({len(TRAINING_STARTS)} starts × {args.repeat} repeats).\n")
 
     for idx, tau in enumerate(trajectories):
+        queries_before = learner.vlm_query_count
         learner.process_trajectory(tau)
-        sym = learner.get_symbolic_state()
-        if (idx + 1) % 5 == 0 or idx == len(trajectories) - 1:
-            print(
-                f"[{idx+1:3d}] prohibitions={len(sym.prohibitions):2d}  "
-                f"obligations={len(sym.obligations):2d}  "
-                f"hyp_prohibitions={len(sym.hyp_prohibitions):2d}  "
-                f"permissions={len(sym.permissions):3d}  "
-                f"vlm_queries={learner.vlm_query_count}"
-            )
 
-    # --- Print prompt and exit if requested --------------------------------
-    if args.print_prompt:
-        hyps = build_abstract_hypotheses(
-            learner.get_symbolic_state(), env, learner.get_trajectory_records()
-        )
-        prompt = build_vlm_prompt(hyps, [], learner.n_trajectories)
-        print("\n" + "=" * 60)
-        print("VLM PROMPT")
-        print("=" * 60)
-        print(prompt)
-        return
+        start_xy = env.state_to_xy(tau[0][0])
+        print(f"\n{'=' * 60}")
+        print(f"TRAJECTORY {idx + 1}  start={start_xy}  len={len(tau)}")
+        print(f"{'=' * 60}")
+        print_trajectory_on_grid(cfg, tau, env)
 
-    # Final VLM query if not already triggered
-    if learner.n_trajectories % args.interval != 0:
-        print("\nRunning final VLM query…")
-        learner.force_vlm_query()
+        if learner.vlm_query_count > queries_before and learner.last_prompt is not None:
+            print("\n--- VLM PROMPT ---")
+            print(learner.last_prompt)
+
+            norms = learner.get_grounded_norms()
+            rejected = learner.get_rejected_norms()
+            print(f"\n--- VLM OUTPUT  ({len(norms)} active norm(s)) ---")
+            for n in norms:
+                print(f"  [{n.norm_type.upper()}] {n.description}")
+                print(f"   reasoning: {n.reasoning}")
+            if rejected:
+                print(f"\n--- REJECTED ({len(rejected)} total) ---")
+                for n in rejected[-5:]:
+                    print(f"  [{n.norm_type.upper()}] {n.description}")
 
     # --- Print symbolic results -------------------------------------------
     sym = learner.get_symbolic_state()
