@@ -160,10 +160,9 @@ class MazeNamoEnvironment(EnvironmentInterface):
             "state": state,
             "zone": self._zone(x, y),
             "dist_to_goal": d_goal,
-            "dist_to_req_box": d_box,
+            "dist_to_box": d_box,
             "near_goal": d_goal <= 1,
-            "near_req_box": d_box <= 1,
-            "at_push_position": (x == bx and y == by + 1),  # one south of box
+            "near_box": d_box <= 1,
         }
 
     def get_environment_description(self) -> str:
@@ -192,7 +191,7 @@ class MazeNamoEnvironment(EnvironmentInterface):
         if abs(x - gx) + abs(y - gy) <= 2:
             return "near_goal"
         if abs(x - bx) + abs(y - by) <= 1:
-            return "near_req_box"
+            return "near_box"
         if y >= self.cfg.height - 3:
             return "start_area"
         return "open"

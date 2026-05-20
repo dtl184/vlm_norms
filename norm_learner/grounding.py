@@ -230,6 +230,28 @@ def build_abstract_hypotheses(
             )
         )
 
+    # --- Hypothesised obligations (H_O: pairs present in every trajectory) --
+    if symbolic_state.hyp_obligations:
+        n_traj = len(symbolic_state.demonstrations)
+        h_o_pairs = sorted(symbolic_state.hyp_obligations, key=str)
+        descs = [_format_pair(sa, env) for sa in h_o_pairs]
+        joined = "\n  ".join(f"[{d}]" for d in descs)
+        hypotheses.append(
+            AbstractNormHypothesis(
+                norm_type="obligation",
+                symbolic_pairs=h_o_pairs,
+                trajectory_ids=list(range(n_traj)),
+                pre_conditions={},
+                post_conditions={},
+                state_delta={},
+                symbolic_summary=(
+                    f"COMMON ACTIONS — present in all {n_traj} demonstrations:\n"
+                    f"  {joined}"
+                ),
+                supporting_count=n_traj,
+            )
+        )
+
     # --- Disjunctive prohibitions (confirmed but ambiguous) ---------------
     for disj in symbolic_state.disjunctive_prohibitions:
         pairs = list(disj)
