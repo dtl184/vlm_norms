@@ -188,10 +188,19 @@ class NormLearner:
             logger.debug("No hypotheses to ground yet; skipping VLM query.")
             return
 
+        current_steps: list[str] | None = None
+        if self._trajectory_records:
+            rec = self._trajectory_records[-1]
+            current_steps = [
+                f"{self.env.describe_action(a)} from {self.env.describe_state(s)}"
+                for s, a in rec.trajectory
+            ]
+
         prompt = build_vlm_prompt(
             abstract_hyps,
             self._grounded_norms,
             len(self._trajectory_records),
+            current_steps,
         )
         self._last_prompt = prompt
         logger.debug("VLM prompt (first 500 chars):\n%s", prompt[:500])

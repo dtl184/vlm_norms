@@ -290,69 +290,60 @@ def build_vlm_prompt(
     abstract_hypotheses: list[AbstractNormHypothesis],
     grounded_norms: list[GroundedNorm],
     n_trajectories: int,
+    current_trajectory_steps: list[str] | None = None,
 ) -> str:
     """
     Build the prompt sent to the VLM.
 
     Structure
     ---------
-    1. Summary of symbolic analysis results derived from demonstrations.
-    2. Previously grounded norms (for iterative refinement).
-    3. JSON output instructions.
+    1. Actions present in every observed trajectory (strongest obligation signal).
+    2. Current trajectory step sequence.
+    3. Previously grounded norms (for iterative refinement).
+    4. JSON output instructions.
     """
     lines: list[str] = []
 
-    # --- Header -----------------------------------------------------------
-    lines.append(
-        f"The following patterns were detected by symbolic shortcut analysis "
-        f"of {n_trajectories} agent demonstrations."
+    # --- Common actions (H_O) — the primary signal ------------------------
+    h_o_hyp = next(
+        (h for h in abstract_hypotheses if h.norm_type == "obligation" and h.supporting_count == n_trajectories),
+        None,
     )
-    lines.append("")
-
-    # --- Symbolic hypotheses ----------------------------------------------
-    lines.append("=== SYMBOLIC NORM PATTERNS ===")
-
-    display = abstract_hypotheses[:_MAX_HYPOTHESES_IN_PROMPT]
-    if not display:
-        lines.append("(No patterns detected yet — not enough trajectories.)")
+    if h_o_hyp and n_trajectories > 0:
+        lines.append(
+            f"I have observed {n_trajectories} agents completing a task. "
+            f"The following actions appear in EVERY trajectory:"
+        )
+        for sa_desc in h_o_hyp.symbolic_summary.split("\n")[1:]:
+            lines.append(sa_desc)
     else:
-        for idx, hyp in enumerate(display):
-            lines.append(f"[{idx}] {hyp.symbolic_summary}")
-            if hyp.pre_conditions:
-                lines.append(
-                    f"     Pre-conditions : {_format_world_state(hyp.pre_conditions)}"
-                )
-            if hyp.post_conditions:
-                lines.append(
-                    f"     Post-conditions: {_format_world_state(hyp.post_conditions)}"
-                )
-            if hyp.state_delta:
-                lines.append(
-                    f"     Changed        : {_format_world_state(hyp.state_delta)}"
-                )
+        lines.append(
+            f"I have observed {n_trajectories} agents completing a task. "
+            f"Not enough data yet to identify common actions."
+        )
     lines.append("")
+
+    # --- Current trajectory -----------------------------------------------
+    if current_trajectory_steps:
+        lines.append(f"LATEST TRAJECTORY ({len(current_trajectory_steps)} steps):")
+        for step in current_trajectory_steps:
+            lines.append(f"  {step}")
+        lines.append("")
 
     # --- Previously grounded norms ----------------------------------------
     if grounded_norms:
-        lines.append("=== PREVIOUSLY IDENTIFIED NORMS (refine or confirm) ===")
+        lines.append("PREVIOUSLY IDENTIFIED NORMS (refine or drop if contradicted):")
         for gn in grounded_norms:
-            lines.append(
-                f"- [{gn.norm_type.upper()}] {gn.description} "
-                f"(iteration {gn.iteration})"
-            )
+            lines.append(f"  [{gn.norm_type.upper()}] {gn.description}")
         lines.append("")
 
     # --- Output instructions ----------------------------------------------
-    lines.append("=== TASK ===")
     lines.append(
-        "Based on the symbolic evidence above, identify the social norms "
-        "present in this environment.  Each norm should capture a general "
-        "rule that a rational agent appears to be following.\n"
-        "Respond with a JSON array.  Each element must have these fields:\n"
-        '  "type"       : "prohibition" | "obligation" | "permission"\n'
-        '  "description": natural-language description of the norm\n'
-        '  "reasoning"  : one-sentence justification\n'
-        "\nOnly output the JSON array — no prose before or after."
+        "What social norm(s) are the agents following? "
+        "Actions present in every trajectory are the strongest evidence for obligations.\n"
+        "Output only a JSON array, no prose:\n"
+        '[{"type": "obligation"|"prohibition"|"permission", '
+        '"description": "...", "reasoning": "..."}]'
     )
 
     return "\n".join(lines)
