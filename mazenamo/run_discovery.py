@@ -42,10 +42,9 @@ from norm_learner import (
 
 from mazenamo import (
     DEFAULT_LAYOUT,
-    TRAINING_STARTS,
     GridConfig,
     MazeNamoEnvironment,
-    generate_training_set,
+    generate_from_all_starts,
     norm_following_trajectory,
     norm_violating_trajectory,
 )
@@ -101,8 +100,6 @@ def main() -> None:
     parser.add_argument("--api-key", default="ollama")
     parser.add_argument("--interval", type=int, default=1,
                         help="Query VLM every N trajectories (default: every trajectory)")
-    parser.add_argument("--repeat", type=int, default=1,
-                        help="Repeat each start position N times (default: 1 = unique starts)")
     args = parser.parse_args()
 
     # --- Build environment -------------------------------------------------
@@ -183,10 +180,10 @@ def main() -> None:
     # --- Set up learner ----------------------------------------------------
     learner = NormLearner(env, vlm, vlm_query_interval=args.interval)
 
-    # --- Generate & process trajectories ----------------------------------
-    trajectories = generate_training_set(env, TRAINING_STARTS, repeat=args.repeat)
+    # --- Generate trajectories from every reachable starting cell ----------
+    trajectories = generate_from_all_starts(env)
     print(f"Generated {len(trajectories)} norm-following trajectories "
-          f"({len(TRAINING_STARTS)} starts × {args.repeat} repeats).\n")
+          f"(one per reachable starting cell).\n")
 
     for idx, tau in enumerate(trajectories):
         queries_before = learner.vlm_query_count

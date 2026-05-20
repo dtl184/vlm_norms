@@ -95,3 +95,25 @@ def generate_training_set(
             if tau:
                 trajectories.append(tau)
     return trajectories
+
+
+def generate_from_all_starts(
+    env: MazeNamoEnvironment,
+    exclude: set[tuple[int, int]] | None = None,
+) -> list[Trajectory]:
+    """
+    Generate one norm-following trajectory from every passable, non-goal,
+    non-box cell in the grid.  Cells in *exclude* are skipped (use this to
+    avoid re-generating starts already in the training set).
+    """
+    cfg = env.cfg
+    skip = (exclude or set()) | {cfg.goal, cfg.required_box_start}
+    trajectories: list[Trajectory] = []
+    for y in range(cfg.height):
+        for x in range(cfg.width):
+            if (x, y) in cfg.walls or (x, y) in skip:
+                continue
+            tau = norm_following_trajectory(env, (x, y))
+            if tau:
+                trajectories.append(tau)
+    return trajectories
