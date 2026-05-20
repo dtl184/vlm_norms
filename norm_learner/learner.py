@@ -160,7 +160,6 @@ class NormLearner:
         prompt = build_vlm_prompt(
             abstract_hyps,
             self._grounded_norms,
-            self.env,
             len(self._trajectory_records),
         )
         logger.debug("VLM prompt (first 500 chars):\n%s", prompt[:500])

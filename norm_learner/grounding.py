@@ -267,7 +267,6 @@ def _format_world_state(ws: WorldState) -> str:
 def build_vlm_prompt(
     abstract_hypotheses: list[AbstractNormHypothesis],
     grounded_norms: list[GroundedNorm],
-    env: "EnvironmentInterface",
     n_trajectories: int,
 ) -> str:
     """
@@ -275,21 +274,16 @@ def build_vlm_prompt(
 
     Structure
     ---------
-    1. Environment description.
-    2. Summary of symbolic analysis results (confirmed + hypothesised norms).
-    3. Trajectory context for hypotheses that have one.
-    4. Previously grounded norms (for iterative refinement).
-    5. JSON output instructions.
+    1. Summary of symbolic analysis results derived from demonstrations.
+    2. Previously grounded norms (for iterative refinement).
+    3. JSON output instructions.
     """
     lines: list[str] = []
 
     # --- Header -----------------------------------------------------------
-    lines.append("=== ENVIRONMENT ===")
-    lines.append(env.get_environment_description())
-    lines.append("")
     lines.append(
         f"The following patterns were detected by symbolic shortcut analysis "
-        f"after processing {n_trajectories} agent trajectories."
+        f"of {n_trajectories} agent demonstrations."
     )
     lines.append("")
 

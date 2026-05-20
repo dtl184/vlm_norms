@@ -218,7 +218,7 @@ def main() -> None:
         hyps = build_abstract_hypotheses(
             learner.get_symbolic_state(), env, learner.get_trajectory_records()
         )
-        prompt = build_vlm_prompt(hyps, [], env, learner.n_trajectories)
+        prompt = build_vlm_prompt(hyps, [], learner.n_trajectories)
         print("\n" + "=" * 60)
         print("VLM PROMPT")
         print("=" * 60)
