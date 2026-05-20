@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 # Maximum number of hypotheses included in a single VLM prompt to avoid
 # overwhelming the model's context window.
-_MAX_HYPOTHESES_IN_PROMPT = 30
+_MAX_HYPOTHESES_IN_PROMPT = 8
 
 
 # ---------------------------------------------------------------------------
@@ -113,6 +113,28 @@ def build_abstract_hypotheses(
         if traj_id is not None and traj_id < len(trajectory_records):
             return trajectory_records[traj_id]
         return TrajectoryRecord([], {}, {}, {})
+
+    # --- Hypothesised obligations (H_O) — placed first; strongest signal ----
+    if symbolic_state.hyp_obligations:
+        n_traj = len(symbolic_state.demonstrations)
+        h_o_pairs = sorted(symbolic_state.hyp_obligations, key=str)
+        descs = [_format_pair(sa, env) for sa in h_o_pairs]
+        joined = "\n  ".join(f"[{d}]" for d in descs)
+        hypotheses.append(
+            AbstractNormHypothesis(
+                norm_type="obligation",
+                symbolic_pairs=h_o_pairs,
+                trajectory_ids=list(range(n_traj)),
+                pre_conditions={},
+                post_conditions={},
+                state_delta={},
+                symbolic_summary=(
+                    f"COMMON ACTIONS — present in all {n_traj} demonstrations:\n"
+                    f"  {joined}"
+                ),
+                supporting_count=n_traj,
+            )
+        )
 
     # --- Confirmed prohibitions -------------------------------------------
     for sa in sorted(symbolic_state.prohibitions, key=str):
@@ -227,28 +249,6 @@ def build_abstract_hypotheses(
                 state_delta=record.delta,
                 symbolic_summary=summary,
                 supporting_count=1,
-            )
-        )
-
-    # --- Hypothesised obligations (H_O: pairs present in every trajectory) --
-    if symbolic_state.hyp_obligations:
-        n_traj = len(symbolic_state.demonstrations)
-        h_o_pairs = sorted(symbolic_state.hyp_obligations, key=str)
-        descs = [_format_pair(sa, env) for sa in h_o_pairs]
-        joined = "\n  ".join(f"[{d}]" for d in descs)
-        hypotheses.append(
-            AbstractNormHypothesis(
-                norm_type="obligation",
-                symbolic_pairs=h_o_pairs,
-                trajectory_ids=list(range(n_traj)),
-                pre_conditions={},
-                post_conditions={},
-                state_delta={},
-                symbolic_summary=(
-                    f"COMMON ACTIONS — present in all {n_traj} demonstrations:\n"
-                    f"  {joined}"
-                ),
-                supporting_count=n_traj,
             )
         )
 
