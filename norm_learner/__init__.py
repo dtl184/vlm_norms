@@ -1,14 +1,14 @@
 """
-norm_learner — incremental symbolic + VLM norm discovery.
+norm_learner — incremental symbolic + LLM norm discovery.
 
 Quick-start
 -----------
-    from norm_learner import NormLearner, MockVLM
+    from norm_learner import NormLearner, MockLLM
     from norm_learner.environments.supermarket import SupermarketEnvironment
 
     env = SupermarketEnvironment(shelf_states=my_shelf_set)
-    vlm = MockVLM()   # replace with OpenAICompatibleVLM or LocalTransformersVLM
-    learner = NormLearner(env, vlm, vlm_query_interval=20)
+    llm = MockLLM()   # replace with OpenAICompatibleLLM or LocalTransformersLLM
+    learner = NormLearner(env, llm, llm_query_interval=20)
 
     for tau in trajectories:
         learner.process_trajectory(tau)
@@ -19,6 +19,8 @@ Quick-start
 
 from .environment import EnvironmentInterface
 from .learner import NormLearner
+from .llm import LocalTransformersLLM, MockLLM, OpenAICompatibleLLM, LLMInterface
+from .grounding import build_naturalization_prompt, build_norm_prompt
 from .symbolic import NormLearnerState, norm_discovery
 from .types import (
     AbstractNormHypothesis,
@@ -27,17 +29,19 @@ from .types import (
     TrajectoryRecord,
     WorldState,
 )
-from .vlm import LocalTransformersVLM, MockVLM, OpenAICompatibleVLM, VLMInterface
 
 __all__ = [
     # Core API
     "NormLearner",
     "EnvironmentInterface",
-    # VLM backends
-    "VLMInterface",
-    "MockVLM",
-    "OpenAICompatibleVLM",
-    "LocalTransformersVLM",
+    # LLM backends
+    "LLMInterface",
+    "MockLLM",
+    "OpenAICompatibleLLM",
+    "LocalTransformersLLM",
+    # Grounding helpers (for advanced use)
+    "build_naturalization_prompt",
+    "build_norm_prompt",
     # Symbolic primitives (for advanced use)
     "NormLearnerState",
     "norm_discovery",

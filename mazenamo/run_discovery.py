@@ -34,10 +34,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from norm_learner import (
-    LocalTransformersVLM,
-    MockVLM,
+    LocalTransformersLLM,
+    MockLLM,
     NormLearner,
-    OpenAICompatibleVLM,
+    OpenAICompatibleLLM,
 )
 
 from mazenamo import (
@@ -134,51 +134,39 @@ def main() -> None:
     # --- VLM backend -------------------------------------------------------
     if args.vlm == "mock":
         import json
-        # Realistic mock that demonstrates what a real Qwen response would look like
-        vlm = MockVLM(fixed_response=json.dumps([
+        # Realistic mock that demonstrates what a real LLM response would look like
+        llm = MockLLM(fixed_response=json.dumps([
             {
                 "type": "obligation",
                 "description": (
-                    "The agent must push the required box (B) before reaching "
+                    "The agent must push the box (B) before reaching "
                     "the goal (G). All observed agents detour to interact with "
-                    "the box at (2,4) prior to moving toward the goal."
+                    "the box prior to moving toward the goal."
                 ),
                 "reasoning": (
                     "Agents consistently take longer paths that pass through "
                     "the box location, even though a shorter direct route to "
-                    "the goal exists. The box-push action appears in every "
+                    "the goal exists. The PUSH action appears in every "
                     "observed trajectory."
                 ),
             },
-            {
-                "type": "prohibition",
-                "description": (
-                    "Agents must not move directly north from the start area "
-                    "toward the goal without first visiting the box."
-                ),
-                "reasoning": (
-                    "The direct northward path from the lower grid to the goal "
-                    "is consistently avoided; instead, agents go west then "
-                    "interact with the box before heading to the goal."
-                ),
-            },
         ]))
-        print("VLM backend : MockVLM (realistic stub responses)\n")
+        print("LLM backend : MockLLM (realistic stub responses)\n")
     elif args.vlm == "local":
-        vlm = LocalTransformersVLM(
+        llm = LocalTransformersLLM(
             model_name=args.model,
             device=args.device,
             torch_dtype=args.dtype,
         )
-        print(f"VLM backend : local {args.model}  (device={args.device}, dtype={args.dtype})\n")
+        print(f"LLM backend : local {args.model}  (device={args.device}, dtype={args.dtype})\n")
     else:
-        vlm = OpenAICompatibleVLM(
-            base_url=args.api_url, api_key="sk-b3d70dac46d54b5b82461eff1bb27256", model=args.model
+        llm = OpenAICompatibleLLM(
+            base_url=args.api_url, api_key=args.api_key, model=args.model
         )
-        print(f"VLM backend : API at {args.api_url}, model={args.model}\n")
+        print(f"LLM backend : API at {args.api_url}, model={args.model}\n")
 
     # --- Set up learner ----------------------------------------------------
-    learner = NormLearner(env, vlm, vlm_query_interval=args.interval)
+    learner = NormLearner(env, llm, llm_query_interval=args.interval)
 
     # --- Generate trajectories from every reachable starting cell ----------
     trajectories = generate_from_all_starts(env)
@@ -186,7 +174,7 @@ def main() -> None:
           f"(one per reachable starting cell).\n")
 
     for idx, tau in enumerate(trajectories):
-        queries_before = learner.vlm_query_count
+        queries_before = learner.llm_query_count
         learner.process_trajectory(tau)
 
         start_xy = env.state_to_xy(tau[0][0])
@@ -195,7 +183,7 @@ def main() -> None:
         print(f"{'=' * 60}")
         print_trajectory_on_grid(cfg, tau, env)
 
-        if learner.vlm_query_count > queries_before and learner.last_prompt is not None:
+        if learner.llm_query_count > queries_before and learner.last_prompt is not None:
             print("\n--- VLM PROMPT ---")
             print(learner.last_prompt)
 

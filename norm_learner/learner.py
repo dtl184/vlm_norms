@@ -3,17 +3,23 @@ NormLearner — the top-level orchestrator.
 
 Ties together the symbolic algorithm (norm_discovery), pre/post condition
 extraction (extract_pre_post), abstract-hypothesis building
-(build_abstract_hypotheses), and VLM grounding (build_vlm_prompt /
+(build_abstract_hypotheses), and LLM grounding (build_norm_prompt /
 parse_vlm_response) into a single, importable class.
+
+Two-step LLM grounding
+----------------------
+1. Naturalization: convert the current trajectory's pre/post conditions to
+   natural language via ``build_naturalization_prompt``.
+2. Norm discovery: feed the NL description into the norm-discovery prompt.
 
 Typical usage
 -------------
-    from norm_learner import NormLearner, MockVLM
+    from norm_learner import NormLearner, MockLLM
     from norm_learner.environments.supermarket import SupermarketEnvironment
 
     env = SupermarketEnvironment()
-    vlm = MockVLM()                          # swap for Qwen in production
-    learner = NormLearner(env, vlm, vlm_query_interval=20)
+    llm = MockLLM()                          # swap for Qwen in production
+    learner = NormLearner(env, llm, llm_query_interval=20)
 
     for tau in trajectories:
         learner.process_trajectory(tau)
@@ -30,10 +36,12 @@ from typing import Callable
 from .environment import EnvironmentInterface
 from .grounding import (
     build_abstract_hypotheses,
-    build_vlm_prompt,
+    build_naturalization_prompt,
+    build_norm_prompt,
     extract_pre_post,
     parse_vlm_response,
 )
+from .llm import LLMInterface
 from .symbolic import NormLearnerState, norm_discovery
 from .types import (
     AbstractNormHypothesis,
@@ -41,48 +49,47 @@ from .types import (
     Trajectory,
     TrajectoryRecord,
 )
-from .vlm import VLMInterface
 
 logger = logging.getLogger(__name__)
 
 
 class NormLearner:
     """
-    Incremental norm learner with VLM grounding.
+    Incremental norm learner with LLM grounding.
 
     Parameters
     ----------
     env : EnvironmentInterface
         The environment adapter (planner + semantic descriptions).
-    vlm : VLMInterface
-        The VLM backend to use for grounding symbolic hypotheses.
-    vlm_query_interval : int
-        Query the VLM every N processed trajectories.  Set to 0 to disable
-        automatic queries (use ``force_vlm_query()`` instead).
-    on_vlm_result : callable | None
-        Optional callback invoked after each VLM query with the list of new
+    llm : LLMInterface
+        The LLM backend to use for grounding symbolic hypotheses.
+    llm_query_interval : int
+        Query the LLM every N processed trajectories.  Set to 0 to disable
+        automatic queries (use ``force_llm_query()`` instead).
+    on_llm_result : callable | None
+        Optional callback invoked after each LLM query with the list of new
         GroundedNorm objects.  Useful for logging or downstream consumers.
     """
 
     def __init__(
         self,
         env: EnvironmentInterface,
-        vlm: VLMInterface,
-        vlm_query_interval: int = 1,
-        on_vlm_result: Callable[[list[GroundedNorm]], None] | None = None,
+        llm: LLMInterface,
+        llm_query_interval: int = 1,
+        on_llm_result: Callable[[list[GroundedNorm]], None] | None = None,
     ) -> None:
         self.env = env
-        self.vlm = vlm
-        self.vlm_query_interval = vlm_query_interval
-        self.on_vlm_result = on_vlm_result
+        self.llm = llm
+        self.llm_query_interval = llm_query_interval
+        self.on_llm_result = on_llm_result
 
         self._symbolic_state = NormLearnerState()
         self._trajectory_records: list[TrajectoryRecord] = []
         self._grounded_norms: list[GroundedNorm] = []
         self._rejected_norms: list[GroundedNorm] = []
-        # Full history of grounded norms across all VLM query rounds
+        # Full history of grounded norms across all LLM query rounds
         self._grounded_norm_history: list[list[GroundedNorm]] = []
-        self._vlm_query_count: int = 0
+        self._llm_query_count: int = 0
         self._last_prompt: str | None = None
 
     # ------------------------------------------------------------------
@@ -97,7 +104,7 @@ class NormLearner:
         -----
         1. Extract pre/post conditions from the environment.
         2. Run the symbolic norm-discovery update.
-        3. Query the VLM if the configured interval is reached.
+        3. Query the LLM if the configured interval is reached.
         """
         record = extract_pre_post(tau, self.env)
         self._trajectory_records.append(record)
@@ -106,20 +113,20 @@ class NormLearner:
         self._verify_grounded_norms()
 
         n = len(self._trajectory_records)
-        if self.vlm_query_interval > 0 and n % self.vlm_query_interval == 0:
-            logger.info("Trajectory %d: triggering VLM query.", n)
-            self._run_vlm_query()
+        if self.llm_query_interval > 0 and n % self.llm_query_interval == 0:
+            logger.info("Trajectory %d: triggering LLM query.", n)
+            self._run_llm_query()
 
-    def force_vlm_query(self) -> list[GroundedNorm]:
+    def force_llm_query(self) -> list[GroundedNorm]:
         """
-        Immediately run a VLM query regardless of the interval counter and
+        Immediately run an LLM query regardless of the interval counter and
         return the resulting grounded norms.
         """
-        self._run_vlm_query()
+        self._run_llm_query()
         return list(self._grounded_norms)
 
     def get_grounded_norms(self) -> list[GroundedNorm]:
-        """Return the most-recent list of VLM-grounded norms."""
+        """Return the most-recent list of LLM-grounded norms."""
         return list(self._grounded_norms)
 
     def get_rejected_norms(self) -> list[GroundedNorm]:
@@ -128,11 +135,11 @@ class NormLearner:
 
     @property
     def last_prompt(self) -> str | None:
-        """The VLM prompt used in the most recent query, or None if no query yet."""
+        """The LLM norm-discovery prompt used in the most recent query, or None if no query yet."""
         return self._last_prompt
 
     def get_grounded_norm_history(self) -> list[list[GroundedNorm]]:
-        """Return grounded norms from every VLM query round, oldest first."""
+        """Return grounded norms from every LLM query round, oldest first."""
         return list(self._grounded_norm_history)
 
     def get_symbolic_state(self) -> NormLearnerState:
@@ -154,8 +161,8 @@ class NormLearner:
         return len(self._trajectory_records)
 
     @property
-    def vlm_query_count(self) -> int:
-        return self._vlm_query_count
+    def llm_query_count(self) -> int:
+        return self._llm_query_count
 
     # ------------------------------------------------------------------
     # Internal
@@ -180,51 +187,59 @@ class NormLearner:
                 surviving.append(norm)
         self._grounded_norms = surviving
 
-    def _run_vlm_query(self) -> None:
+    def _run_llm_query(self) -> None:
         abstract_hyps = build_abstract_hypotheses(
             self._symbolic_state, self.env, self._trajectory_records
         )
         if not abstract_hyps:
-            logger.debug("No hypotheses to ground yet; skipping VLM query.")
+            logger.debug("No hypotheses to ground yet; skipping LLM query.")
             return
 
-        current_steps: list[str] | None = None
+        # --- Step 1: naturalise the latest trajectory's pre/post conditions --
+        nl_context: str | None = None
         if self._trajectory_records:
             rec = self._trajectory_records[-1]
             current_steps = [
                 f"{self.env.describe_action(a)} from {self.env.describe_state(s)}"
                 for s, a in rec.trajectory
             ]
+            nat_prompt = build_naturalization_prompt(rec, current_steps)
+            logger.debug("Naturalization prompt:\n%s", nat_prompt)
+            try:
+                nl_context = self.llm.query(nat_prompt)
+                logger.debug("Naturalization response:\n%s", nl_context)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Naturalization LLM call failed: %s", exc)
 
-        prompt = build_vlm_prompt(
+        # --- Step 2: norm-discovery prompt with NL context -------------------
+        prompt = build_norm_prompt(
             abstract_hyps,
-            self._grounded_norms,
             len(self._trajectory_records),
-            current_steps,
+            nl_context=nl_context,
         )
         self._last_prompt = prompt
-        logger.debug("VLM prompt (first 500 chars):\n%s", prompt[:500])
+        logger.debug("Norm-discovery prompt (first 500 chars):\n%s", prompt[:500])
 
         try:
-            response = self.vlm.query(prompt)
+            response = self.llm.query(prompt)
         except Exception as exc:  # noqa: BLE001
-            logger.error("VLM query failed: %s", exc)
+            logger.error("LLM norm-discovery query failed: %s", exc)
             return
 
-        logger.debug("VLM response (first 500 chars):\n%s", response[:500])
+        logger.debug("LLM response (first 500 chars):\n%s", response[:500])
 
         new_norms = parse_vlm_response(
-            response, abstract_hyps, self._vlm_query_count
+            response, abstract_hyps, self._llm_query_count
         )
         self._grounded_norms = new_norms
         self._grounded_norm_history.append(list(new_norms))
-        self._vlm_query_count += 1
+        self._llm_query_count += 1
 
-        if self.on_vlm_result is not None:
-            self.on_vlm_result(new_norms)
+        if self.on_llm_result is not None:
+            self.on_llm_result(new_norms)
 
         logger.info(
-            "VLM query #%d complete: %d grounded norms.",
-            self._vlm_query_count,
+            "LLM query #%d complete: %d grounded norms.",
+            self._llm_query_count,
             len(new_norms),
         )

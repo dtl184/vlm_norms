@@ -1,14 +1,16 @@
 """
-Grounding layer: bridges the symbolic algorithm and the VLM.
+Grounding layer: bridges the symbolic algorithm and the LLM.
 
 Responsibilities
 ----------------
-1. extract_pre_post      — build a TrajectoryRecord with semantic features.
-2. build_abstract_hypotheses — convert the current NormLearnerState into a
-                               list of AbstractNormHypothesis objects annotated
-                               with trajectory context and human-readable text.
-3. build_vlm_prompt      — serialise hypotheses + history into a prompt string.
-4. parse_vlm_response    — parse the VLM's JSON reply into GroundedNorm objects.
+1. extract_pre_post           — build a TrajectoryRecord with semantic features.
+2. build_abstract_hypotheses  — convert the current NormLearnerState into a
+                                list of AbstractNormHypothesis objects annotated
+                                with trajectory context and human-readable text.
+3. build_naturalization_prompt — Step 1 of two-step LLM grounding: convert a
+                                trajectory's pre/post conditions to NL.
+4. build_norm_prompt          — Step 2: norm-discovery prompt using NL context.
+5. parse_vlm_response         — parse the LLM's JSON reply into GroundedNorm objects.
 """
 
 from __future__ import annotations
@@ -115,26 +117,33 @@ def build_abstract_hypotheses(
         return TrajectoryRecord([], {}, {}, {})
 
     # --- Hypothesised obligations (H_O) — placed first; strongest signal ----
+    # Only keep non-movement actions (e.g. PUSH, INTERACT) — cardinal movements
+    # that are common are just incidental path artefacts, not social norms.
+    _MOVEMENT_ACTIONS = {"NORTH", "SOUTH", "EAST", "WEST"}
     if symbolic_state.hyp_obligations:
         n_traj = len(symbolic_state.demonstrations)
-        h_o_pairs = sorted(symbolic_state.hyp_obligations, key=str)
-        descs = [_format_pair(sa, env) for sa in h_o_pairs]
-        joined = "\n  ".join(f"[{d}]" for d in descs)
-        hypotheses.append(
-            AbstractNormHypothesis(
-                norm_type="obligation",
-                symbolic_pairs=h_o_pairs,
-                trajectory_ids=list(range(n_traj)),
-                pre_conditions={},
-                post_conditions={},
-                state_delta={},
-                symbolic_summary=(
-                    f"COMMON ACTIONS — present in all {n_traj} demonstrations:\n"
-                    f"  {joined}"
-                ),
-                supporting_count=n_traj,
+        all_h_o = sorted(symbolic_state.hyp_obligations, key=str)
+        key_pairs = [sa for sa in all_h_o
+                     if env.describe_action(sa[1]) not in _MOVEMENT_ACTIONS]
+        if key_pairs:
+            descs = [_format_pair(sa, env) for sa in key_pairs]
+            joined = "\n  ".join(f"[{d}]" for d in descs)
+            hypotheses.append(
+                AbstractNormHypothesis(
+                    norm_type="obligation",
+                    symbolic_pairs=key_pairs,
+                    trajectory_ids=list(range(n_traj)),
+                    pre_conditions={},
+                    post_conditions={},
+                    state_delta={},
+                    symbolic_summary=(
+                        f"INTERACTION ACTIONS — present in all {n_traj} demonstrations "
+                        f"(strongest evidence for obligations):\n"
+                        f"  {joined}"
+                    ),
+                    supporting_count=n_traj,
+                )
             )
-        )
 
     # --- Confirmed prohibitions -------------------------------------------
     for sa in sorted(symbolic_state.prohibitions, key=str):
@@ -277,7 +286,7 @@ def build_abstract_hypotheses(
 
 
 # ---------------------------------------------------------------------------
-# VLM prompt construction
+# LLM prompt construction
 # ---------------------------------------------------------------------------
 
 def _format_world_state(ws: WorldState) -> str:
@@ -286,62 +295,82 @@ def _format_world_state(ws: WorldState) -> str:
     return ", ".join(f"{k}={v}" for k, v in ws.items())
 
 
-def build_vlm_prompt(
-    abstract_hypotheses: list[AbstractNormHypothesis],
-    grounded_norms: list[GroundedNorm],
-    n_trajectories: int,
-    current_trajectory_steps: list[str] | None = None,
+def build_naturalization_prompt(
+    record: TrajectoryRecord,
+    trajectory_steps: list[str],
 ) -> str:
     """
-    Build the prompt sent to the VLM.
+    Step 1 of two-step LLM grounding.
+
+    Ask the LLM to describe in plain English what happened in this trajectory
+    based on its pre/post conditions and step sequence.  The result is then
+    passed as ``nl_context`` to ``build_norm_prompt``.
+    """
+    lines: list[str] = []
+    lines.append(
+        "An agent completed a task in a grid world. "
+        "Describe in 2-3 plain English sentences what the agent did and "
+        "what changed in the world. Be concise and factual."
+    )
+    lines.append("")
+    lines.append(f"Pre-conditions : {_format_world_state(record.pre_conditions)}")
+    lines.append(f"Post-conditions: {_format_world_state(record.post_conditions)}")
+    lines.append(f"State changes  : {_format_world_state(record.delta)}")
+    lines.append("")
+    lines.append(f"Action sequence ({len(trajectory_steps)} steps):")
+    for step in trajectory_steps:
+        lines.append(f"  {step}")
+    return "\n".join(lines)
+
+
+def build_norm_prompt(
+    abstract_hypotheses: list[AbstractNormHypothesis],
+    n_trajectories: int,
+    nl_context: str | None = None,
+) -> str:
+    """
+    Step 2 of two-step LLM grounding — norm-discovery prompt.
 
     Structure
     ---------
-    1. Actions present in every observed trajectory (strongest obligation signal).
-    2. Current trajectory step sequence.
-    3. Previously grounded norms (for iterative refinement).
-    4. JSON output instructions.
+    1. Naturalized description of the latest trajectory (from Step 1).
+    2. Actions present in every observed trajectory (strongest obligation signal).
+    3. JSON output instructions.
     """
     lines: list[str] = []
 
+    # --- Naturalized context from Step 1 ----------------------------------
+    if nl_context:
+        lines.append("LATEST TRAJECTORY DESCRIPTION:")
+        lines.append(nl_context.strip())
+        lines.append("")
+
     # --- Common actions (H_O) — the primary signal ------------------------
     h_o_hyp = next(
-        (h for h in abstract_hypotheses if h.norm_type == "obligation" and h.supporting_count == n_trajectories),
+        (h for h in abstract_hypotheses
+         if h.norm_type == "obligation" and h.supporting_count == n_trajectories),
         None,
     )
     if h_o_hyp and n_trajectories > 0:
         lines.append(
             f"I have observed {n_trajectories} agents completing a task. "
-            f"The following actions appear in EVERY trajectory:"
+            f"The following NON-MOVEMENT actions appear in EVERY trajectory "
+            f"(strongest evidence for an obligation norm):"
         )
         for sa_desc in h_o_hyp.symbolic_summary.split("\n")[1:]:
             lines.append(sa_desc)
     else:
         lines.append(
             f"I have observed {n_trajectories} agents completing a task. "
-            f"Not enough data yet to identify common actions."
+            f"Not enough data yet to identify common non-movement actions."
         )
     lines.append("")
 
-    # --- Current trajectory -----------------------------------------------
-    if current_trajectory_steps:
-        lines.append(f"LATEST TRAJECTORY ({len(current_trajectory_steps)} steps):")
-        for step in current_trajectory_steps:
-            lines.append(f"  {step}")
-        lines.append("")
-
-    # --- Previously grounded norms ----------------------------------------
-    if grounded_norms:
-        lines.append("PREVIOUSLY IDENTIFIED NORMS (refine or drop if contradicted):")
-        for gn in grounded_norms:
-            lines.append(f"  [{gn.norm_type.upper()}] {gn.description}")
-        lines.append("")
-
     # --- Output instructions ----------------------------------------------
     lines.append(
-        "What social norm(s) are the agents following? "
-        "Actions present in every trajectory are the strongest evidence for obligations.\n"
-        "Output only a JSON array, no prose:\n"
+        "Based on the observations above, what social norm are the agents following?\n"
+        "Focus on the non-movement interaction actions that appear in every trajectory.\n"
+        "Output ONLY a JSON array — no prose before or after:\n"
         '[{"type": "obligation"|"prohibition"|"permission", '
         '"description": "...", "reasoning": "..."}]'
     )
