@@ -6,9 +6,9 @@ State encoding
 State = y * width + x  (agent cell index, integer)
 
 The planner is NORM-UNAWARE: it plans on agent position only, treating walls
-as hard obstacles and the box as transparent (ignores it).  This means it
-will find the direct shortest path to any goal cell — including paths that
-skip the required-box detour — which is exactly the "shortcut" the norm
+as hard obstacles and everything else (forbidden cells, boxes) as transparent.
+This means it finds the direct shortest path to any goal — including paths
+through spills or restricted zones — which is exactly the "shortcut" the norm
 learner needs to detect.
 """
 
@@ -29,6 +29,7 @@ from .env import (
     ACTION_NAMES,
     DELTAS,
     EAST,
+    GREET,
     NORTH,
     PUSH,
     SOUTH,
@@ -41,18 +42,18 @@ class MazeNamoEnvironment(EnvironmentInterface):
     """
     MazeNamo environment wrapper.
 
-    The norm baked into the training trajectories is:
-        *The agent must push the required box before reaching the goal.*
+    The planner is norm-unaware (avoids walls only).  Norm-aware trajectory
+    generators in trajectory_gen.py handle scenario-specific constraints.
 
     Parameters
     ----------
     cfg : GridConfig
-        Grid layout (walls, goal, box start).
+        Grid layout (walls, goal, box start, forbidden cells, guard, etc.).
     """
 
     def __init__(self, cfg: GridConfig) -> None:
         self.cfg = cfg
-        self._wall_set = cfg.walls  # cached for fast membership test
+        self._wall_set = cfg.walls
 
     # ------------------------------------------------------------------
     # Coordinate helpers
@@ -68,8 +69,12 @@ class MazeNamoEnvironment(EnvironmentInterface):
         return 0 <= x < self.cfg.width and 0 <= y < self.cfg.height
 
     def is_passable(self, x: int, y: int) -> bool:
-        """For the norm-unaware planner: walls are blocked, everything else free."""
+        """Norm-unaware: walls are blocked, everything else is free."""
         return self.in_bounds(x, y) and (x, y) not in self._wall_set
+
+    def is_passable_norm_aware(self, x: int, y: int) -> bool:
+        """Norm-aware: also blocks forbidden cells (spills, restricted zones)."""
+        return self.is_passable(x, y) and (x, y) not in self.cfg.forbidden_cells
 
     # ------------------------------------------------------------------
     # Planner (norm-unaware A*)
@@ -80,16 +85,23 @@ class MazeNamoEnvironment(EnvironmentInterface):
         gx, gy = self.state_to_xy(g)
         return abs(sx - gx) + abs(sy - gy)
 
-    def _neighbors(self, state: State) -> list[tuple[State, Action]]:
+    def _neighbors(self, state: State, passable_fn=None) -> list[tuple[State, Action]]:
+        if passable_fn is None:
+            passable_fn = self.is_passable
         x, y = self.state_to_xy(state)
         out = []
         for action, (dx, dy) in DELTAS.items():
             nx, ny = x + dx, y + dy
-            if self.is_passable(nx, ny):
+            if passable_fn(nx, ny):
                 out.append((self.xy_to_state(nx, ny), action))
         return out
 
-    def _astar(self, start: State, goal: State) -> tuple[Trajectory, float]:
+    def _astar(
+        self,
+        start: State,
+        goal: State,
+        passable_fn=None,
+    ) -> tuple[Trajectory, float]:
         if start == goal:
             return [], 0.0
         queue: list[tuple[float, float, State, Trajectory]] = []
@@ -102,7 +114,7 @@ class MazeNamoEnvironment(EnvironmentInterface):
                 return path, g
             if g > best_g.get(cur, float("inf")):
                 continue
-            for nxt, action in self._neighbors(cur):
+            for nxt, action in self._neighbors(cur, passable_fn):
                 ng = g + 1.0
                 if ng < best_g.get(nxt, float("inf")):
                     best_g[nxt] = ng
@@ -115,7 +127,13 @@ class MazeNamoEnvironment(EnvironmentInterface):
     # ------------------------------------------------------------------
 
     def plan(self, start: State, goal: State) -> list[Trajectory]:
+        """Norm-unaware plan (avoids walls only)."""
         path, cost = self._astar(start, goal)
+        return [] if cost == float("inf") else [path]
+
+    def plan_norm_aware(self, start: State, goal: State) -> list[Trajectory]:
+        """Norm-aware plan (also avoids forbidden cells)."""
+        path, cost = self._astar(start, goal, self.is_passable_norm_aware)
         return [] if cost == float("inf") else [path]
 
     def shortest_path_cost(self, start: State, goal: State) -> float:
@@ -126,6 +144,8 @@ class MazeNamoEnvironment(EnvironmentInterface):
         return float(len(trajectory))
 
     def successor(self, state: State, action: Action) -> State | None:
+        if action == GREET:
+            return state  # GREET: agent stays in place
         x, y = self.state_to_xy(state)
         # PUSH acts as NORTH (agent moves into box, box displaced one cell north)
         move = NORTH if action == PUSH else action
@@ -144,11 +164,24 @@ class MazeNamoEnvironment(EnvironmentInterface):
     def describe_state(self, state: State) -> str:
         x, y = self.state_to_xy(state)
         gx, gy = self.cfg.goal
-        bx, by = self.cfg.required_box_start
         d_goal = abs(x - gx) + abs(y - gy)
-        d_box = abs(x - bx) + abs(y - by)
-        zone = self._zone(x, y)
-        return f"cell ({x},{y}) [{zone}, d_goal={d_goal}, d_box={d_box}]"
+        parts = [f"cell ({x},{y})", f"zone={self._zone(x, y)}", f"d_goal={d_goal}"]
+
+        if self.cfg.required_box_start is not None:
+            bx, by = self.cfg.required_box_start
+            d_box = abs(x - bx) + abs(y - by)
+            parts.append(f"d_box={d_box}")
+
+        label = self.cfg.cell_labels.get((x, y))
+        if label:
+            parts.append(label)
+
+        if self.cfg.guard_pos is not None:
+            gux, guy = self.cfg.guard_pos
+            d_guard = abs(x - gux) + abs(y - guy)
+            parts.append(f"d_guard={d_guard}")
+
+        return " ".join(f"[{p}]" if i == 0 else p for i, p in enumerate(parts))
 
     def describe_action(self, action: Action) -> str:
         return ACTION_NAMES.get(action, f"action_{action}")
@@ -156,33 +189,76 @@ class MazeNamoEnvironment(EnvironmentInterface):
     def extract_semantic_features(self, state: State) -> WorldState:
         x, y = self.state_to_xy(state)
         gx, gy = self.cfg.goal
-        bx, by = self.cfg.required_box_start
         d_goal = abs(x - gx) + abs(y - gy)
-        d_box = abs(x - bx) + abs(y - by)
-        return {
+        feats: WorldState = {
             "x": x,
             "y": y,
             "state": state,
             "zone": self._zone(x, y),
             "dist_to_goal": d_goal,
-            "dist_to_box": d_box,
             "near_goal": d_goal <= 1,
-            "near_box": d_box <= 1,
         }
+
+        if self.cfg.required_box_start is not None:
+            bx, by = self.cfg.required_box_start
+            d_box = abs(x - bx) + abs(y - by)
+            feats["dist_to_box"] = d_box
+            feats["near_box"] = d_box <= 1
+
+        label = self.cfg.cell_labels.get((x, y))
+        if label:
+            feats["cell_type"] = label
+
+        near_forbidden = any(
+            abs(x - fx) + abs(y - fy) <= 1
+            for (fx, fy) in self.cfg.forbidden_cells
+        )
+        if near_forbidden:
+            feats["near_forbidden"] = True
+
+        if self.cfg.guard_pos is not None:
+            gux, guy = self.cfg.guard_pos
+            d_guard = abs(x - gux) + abs(y - guy)
+            feats["dist_to_guard"] = d_guard
+            feats["near_guard"] = d_guard <= 1
+
+        return feats
 
     def get_environment_description(self) -> str:
         gx, gy = self.cfg.goal
-        bx, by = self.cfg.required_box_start
-        return (
-            f"A {self.cfg.width}×{self.cfg.height} grid maze with box-pushing "
-            f"mechanics (MazeNamo).  "
-            f"The agent must reach the goal at ({gx},{gy}).  "
-            f"There is a REQUIRED BOX at ({bx},{by}) that the agent must push "
-            f"(by moving into it) before reaching the goal.  "
-            f"Actions: NORTH (y−1), SOUTH (y+1), EAST (x+1), WEST (x−1).  "
-            f"Walls block movement; pushing a box moves it one cell in the "
-            f"direction of travel."
-        )
+        parts = [
+            f"A {self.cfg.width}×{self.cfg.height} grid maze (MazeNamo). "
+            f"The agent must reach the goal at ({gx},{gy}). "
+            f"Actions: NORTH (y−1), SOUTH (y+1), EAST (x+1), WEST (x−1). "
+            f"Walls block movement."
+        ]
+
+        if self.cfg.required_box_start is not None:
+            bx, by = self.cfg.required_box_start
+            parts.append(
+                f"There is a REQUIRED BOX at ({bx},{by}) that the agent must push "
+                f"(by moving into it) before reaching the goal. "
+                f"Pushing a box moves it one cell in the direction of travel."
+            )
+
+        spills = [(x, y) for (x, y), lbl in self.cfg.cell_labels.items() if lbl == "spill"]
+        if spills:
+            coords = ", ".join(f"({x},{y})" for x, y in spills)
+            parts.append(f"There are SPILL cells at {coords}. Agents must not step on spills.")
+
+        restricted = [(x, y) for (x, y), lbl in self.cfg.cell_labels.items() if lbl == "restricted"]
+        if restricted:
+            coords = ", ".join(f"({x},{y})" for x, y in restricted)
+            parts.append(f"There is a RESTRICTED ZONE at {coords}. Agents must not enter these cells.")
+
+        if self.cfg.guard_pos is not None:
+            gux, guy = self.cfg.guard_pos
+            parts.append(
+                f"There is a GUARD at ({gux},{guy}). "
+                f"Agents must GREET the guard before passing through the checkpoint."
+            )
+
+        return "  ".join(parts)
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -190,13 +266,21 @@ class MazeNamoEnvironment(EnvironmentInterface):
 
     def _zone(self, x: int, y: int) -> str:
         gx, gy = self.cfg.goal
-        bx, by = self.cfg.required_box_start
         if (x, y) == self.cfg.goal:
             return "goal"
         if abs(x - gx) + abs(y - gy) <= 2:
             return "near_goal"
-        if abs(x - bx) + abs(y - by) <= 1:
-            return "near_box"
+        if self.cfg.required_box_start is not None:
+            bx, by = self.cfg.required_box_start
+            if abs(x - bx) + abs(y - by) <= 1:
+                return "near_box"
+        if self.cfg.guard_pos is not None:
+            gux, guy = self.cfg.guard_pos
+            if abs(x - gux) + abs(y - guy) <= 1:
+                return "near_guard"
+        label = self.cfg.cell_labels.get((x, y))
+        if label:
+            return label
         if y >= self.cfg.height - 3:
             return "start_area"
         return "open"
@@ -210,5 +294,6 @@ class MazeNamoEnvironment(EnvironmentInterface):
 
     def box_push_state(self) -> State:
         """The state SOUTH of the required box — the push position."""
+        assert self.cfg.required_box_start is not None
         bx, by = self.cfg.required_box_start
         return self.xy_to_state(bx, by + 1)

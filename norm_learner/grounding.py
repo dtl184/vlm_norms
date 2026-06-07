@@ -38,6 +38,89 @@ logger = logging.getLogger(__name__)
 # overwhelming the model's context window.
 _MAX_HYPOTHESES_IN_PROMPT = 8
 
+_MOVEMENT_ACTION_NAMES = {"NORTH", "SOUTH", "EAST", "WEST"}
+
+
+# ---------------------------------------------------------------------------
+# Temporal ordering helpers
+# ---------------------------------------------------------------------------
+
+def _action_timing(
+    demonstrations: list,
+    non_movement_pairs: set,
+    env: "EnvironmentInterface",
+) -> dict:
+    """
+    For each non-movement action type, compute its mean normalized position
+    (0.0 = start of trajectory, 1.0 = end) across all demonstrations.
+
+    Returns a dict mapping action → (mean_position, phase_label).
+    """
+    action_types = {a for (_, a) in non_movement_pairs
+                    if env.describe_action(a) not in _MOVEMENT_ACTION_NAMES}
+    if not action_types or not demonstrations:
+        return {}
+
+    positions: dict = {a: [] for a in action_types}
+    for tau in demonstrations:
+        n = max(len(tau) - 1, 1)
+        seen: set = set()
+        for i, (_, a) in enumerate(tau):
+            if a in action_types and a not in seen:
+                positions[a].append(i / n)
+                seen.add(a)
+
+    result = {}
+    for a, pos_list in positions.items():
+        if not pos_list:
+            continue
+        mean = sum(pos_list) / len(pos_list)
+        if mean < 0.35:
+            phase = "early — prerequisite phase"
+        elif mean > 0.70:
+            phase = "late — completion phase"
+        else:
+            phase = "mid-trajectory"
+        result[a] = (mean, phase)
+    return result
+
+
+def _temporal_order(
+    demonstrations: list,
+    non_movement_pairs: set,
+    env: "EnvironmentInterface",
+) -> list[tuple]:
+    """
+    Return (a, b) pairs of non-movement action types where action a's first
+    occurrence consistently precedes action b's first occurrence across all
+    demonstrations that contain both.
+    """
+    action_types = sorted(
+        {a for (_, a) in non_movement_pairs
+         if env.describe_action(a) not in _MOVEMENT_ACTION_NAMES}
+    )
+    if len(action_types) < 2:
+        return []
+
+    precedences = []
+    for a in action_types:
+        for b in action_types:
+            if a == b:
+                continue
+            found_both = False
+            consistent = True
+            for tau in demonstrations:
+                first_a = next((i for i, (_, act) in enumerate(tau) if act == a), None)
+                first_b = next((i for i, (_, act) in enumerate(tau) if act == b), None)
+                if first_a is not None and first_b is not None:
+                    found_both = True
+                    if first_a >= first_b:
+                        consistent = False
+                        break
+            if found_both and consistent:
+                precedences.append((a, b))
+    return precedences
+
 
 # ---------------------------------------------------------------------------
 # Pre/post condition extraction
@@ -117,17 +200,43 @@ def build_abstract_hypotheses(
         return TrajectoryRecord([], {}, {}, {})
 
     # --- Hypothesised obligations (H_O) — placed first; strongest signal ----
-    # Only keep non-movement actions (e.g. PUSH, INTERACT) — cardinal movements
-    # that are common are just incidental path artefacts, not social norms.
-    _MOVEMENT_ACTIONS = {"NORTH", "SOUTH", "EAST", "WEST"}
+    # Only keep non-movement actions (e.g. PUSH, GREET) — cardinal movements
+    # are incidental path artefacts, not social norms.
     if symbolic_state.hyp_obligations:
         n_traj = len(symbolic_state.demonstrations)
         all_h_o = sorted(symbolic_state.hyp_obligations, key=str)
         key_pairs = [sa for sa in all_h_o
-                     if env.describe_action(sa[1]) not in _MOVEMENT_ACTIONS]
+                     if env.describe_action(sa[1]) not in _MOVEMENT_ACTION_NAMES]
         if key_pairs:
-            descs = [_format_pair(sa, env) for sa in key_pairs]
-            joined = "\n  ".join(f"[{d}]" for d in descs)
+            # Temporal timing: where in the trajectory does each action appear?
+            timing = _action_timing(
+                symbolic_state.demonstrations, set(key_pairs), env
+            )
+            order = _temporal_order(
+                symbolic_state.demonstrations, set(key_pairs), env
+            )
+
+            action_lines = []
+            for sa in key_pairs:
+                a_name = env.describe_action(sa[1])
+                desc = f"[{_format_pair(sa, env)}]"
+                if sa[1] in timing:
+                    mean_pos, phase = timing[sa[1]]
+                    desc += f"  — trajectory position {mean_pos:.0%} ({phase})"
+                action_lines.append(desc)
+            joined = "\n  ".join(action_lines)
+
+            temporal_note = ""
+            if order:
+                order_strs = [
+                    f"{env.describe_action(a)} BEFORE {env.describe_action(b)}"
+                    for (a, b) in order
+                ]
+                temporal_note = (
+                    f"\n  Temporal ordering (consistent across all demos): "
+                    + ", ".join(order_strs)
+                )
+
             hypotheses.append(
                 AbstractNormHypothesis(
                     norm_type="obligation",
@@ -140,6 +249,7 @@ def build_abstract_hypotheses(
                         f"INTERACTION ACTIONS — present in all {n_traj} demonstrations "
                         f"(strongest evidence for obligations):\n"
                         f"  {joined}"
+                        f"{temporal_note}"
                     ),
                     supporting_count=n_traj,
                 )

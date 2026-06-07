@@ -1,31 +1,33 @@
 """
 MazeNamo norm-discovery demo.
 
-The environment has ONE social norm baked in:
-    "Push the required box (B) before reaching the goal (G)."
-
-Norm-following agents always detour to push the box; the norm-unaware
-planner finds the shorter direct path — this discrepancy is what the
-norm learner exploits.
+Available scenarios
+-------------------
+  push_before_goal   — agent must push box B before reaching goal G (temporal obligation)
+  avoid_spills       — agent must not step on spill cells (prohibition)
+  greet_before_door  — agent must GREET guard before crossing checkpoint (temporal obligation)
+  no_restricted_zone — agent must not enter the restricted zone (prohibition)
 
 Usage
 -----
     cd /home/hrilab/vlm_norms
-    python mazenamo/run_discovery.py
+    python mazenamo/run_discovery.py --scenario avoid_spills
 
     # With real Qwen API:
-    python mazenamo/run_discovery.py --vlm api \
-        --api-url https://dashscope.aliyuncs.com/compatible-mode/v1 \
+    python mazenamo/run_discovery.py --scenario greet_before_door \\
+        --vlm api \\
+        --api-url https://dashscope.aliyuncs.com/compatible-mode/v1 \\
         --api-key $DASHSCOPE_API_KEY --model qwen-plus
 
-    # With local Qwen weights (requires downloaded model):
-    python mazenamo/run_discovery.py --vlm local \
-        --model Qwen/Qwen2.5-7B-Instruct
+    # With local Qwen weights:
+    python mazenamo/run_discovery.py --scenario push_before_goal \\
+        --vlm local --model Qwen/Qwen2.5-7B-Instruct
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -40,30 +42,23 @@ from norm_learner import (
     OpenAICompatibleLLM,
 )
 
-from mazenamo import (
-    DEFAULT_LAYOUT,
-    GridConfig,
-    MazeNamoEnvironment,
-    generate_from_all_starts,
-    norm_following_trajectory,
-    norm_violating_trajectory,
-)
+from mazenamo import SCENARIOS, GridConfig, MazeNamoEnvironment
 from mazenamo.env import render, SimState
 
 
 # ---------------------------------------------------------------------------
-# Helpers
+# Display helpers
 # ---------------------------------------------------------------------------
 
 def print_grid(cfg: GridConfig) -> None:
-    sim = SimState(agent=cfg.default_agent_start, box_pos=cfg.required_box_start)
+    box_pos = cfg.required_box_start if cfg.required_box_start else cfg.goal
+    sim = SimState(agent=cfg.default_agent_start, box_pos=box_pos)
     print(render(cfg, sim))
 
 
 def print_trajectory_on_grid(cfg: GridConfig, tau, env: MazeNamoEnvironment) -> None:
     """Show the states visited by a trajectory as '*' on the grid."""
     visited = {env.state_to_xy(s) for s, _ in tau}
-    sim = SimState(agent=cfg.default_agent_start, box_pos=cfg.required_box_start)
     rows = []
     for y in range(cfg.height):
         row = []
@@ -72,8 +67,13 @@ def print_trajectory_on_grid(cfg: GridConfig, tau, env: MazeNamoEnvironment) -> 
                 row.append("#")
             elif (x, y) == cfg.goal:
                 row.append("G")
-            elif (x, y) == cfg.required_box_start:
+            elif cfg.required_box_start and (x, y) == cfg.required_box_start:
                 row.append("B")
+            elif cfg.guard_pos and (x, y) == cfg.guard_pos:
+                row.append("g")
+            elif (x, y) in cfg.forbidden_cells:
+                lbl = cfg.cell_labels.get((x, y), "?")
+                row.append("s" if lbl == "spill" else "R")
             elif (x, y) in visited:
                 row.append("*")
             else:
@@ -88,7 +88,13 @@ def print_trajectory_on_grid(cfg: GridConfig, tau, env: MazeNamoEnvironment) -> 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="MazeNamo norm-discovery demo")
-    parser.add_argument("--vlm", choices=["mock", "local", "api"], default="local")
+    parser.add_argument(
+        "--scenario",
+        choices=list(SCENARIOS.keys()),
+        default="push_before_goal",
+        help="Which norm scenario to run (default: push_before_goal)",
+    )
+    parser.add_argument("--vlm", choices=["mock", "local", "api"], default="mock")
     parser.add_argument("--model", default="Qwen/Qwen2.5-7B-Instruct",
                         help="HuggingFace model ID or local path for --vlm local; "
                              "model name for --vlm api")
@@ -99,59 +105,35 @@ def main() -> None:
     parser.add_argument("--api-url", default="http://localhost:11434/v1")
     parser.add_argument("--api-key", default="ollama")
     parser.add_argument("--interval", type=int, default=1,
-                        help="Query VLM every N trajectories (default: every trajectory)")
+                        help="Query LLM every N trajectories (default: every trajectory)")
     args = parser.parse_args()
 
-    # --- Build environment -------------------------------------------------
-    cfg = GridConfig.from_layout(DEFAULT_LAYOUT)
+    # --- Load scenario --------------------------------------------------------
+    scenario = SCENARIOS[args.scenario]
+    cfg = GridConfig.from_layout(scenario.layout)
     env = MazeNamoEnvironment(cfg)
 
     print("=" * 60)
-    print("MazeNamo Norm Discovery")
+    print(f"MazeNamo Norm Discovery — scenario: {args.scenario}")
     print("=" * 60)
-    print(f"\nGrid layout (8×8):")
+    print(f"\nGround-truth norm: {scenario.norm_description}\n")
+    print(f"Grid layout ({cfg.width}×{cfg.height}):")
     print_grid(cfg)
-    print(f"\nGoal        : {cfg.goal}")
-    print(f"Required box: {cfg.required_box_start}")
-    print(f"NORM        : agent must push B before reaching G\n")
-
-    # --- Show example trajectories ----------------------------------------
-    print("--- Norm-FOLLOWING trajectory (from default start) ---")
-    tau_follow = norm_following_trajectory(env, cfg.default_agent_start)
-    if tau_follow:
-        print(f"Length: {len(tau_follow)} steps")
-        print_trajectory_on_grid(cfg, tau_follow, env)
+    print(f"\nGoal: {cfg.goal}")
+    if cfg.required_box_start:
+        print(f"Required box: {cfg.required_box_start}")
+    if cfg.forbidden_cells:
+        labels = {v for v in cfg.cell_labels.values() if v != "guard"}
+        print(f"Forbidden cells ({', '.join(sorted(labels))}): "
+              + ", ".join(str(c) for c in sorted(cfg.forbidden_cells)))
+    if cfg.guard_pos:
+        print(f"Guard: {cfg.guard_pos}")
     print()
 
-    print("--- Norm-VIOLATING trajectory (direct to goal) ---")
-    tau_violate = norm_violating_trajectory(env, cfg.default_agent_start)
-    if tau_violate:
-        print(f"Length: {len(tau_violate)} steps  (shortcut saves "
-              f"{len(tau_follow) - len(tau_violate)} steps)")
-        print_trajectory_on_grid(cfg, tau_violate, env)
-    print()
-
-    # --- VLM backend -------------------------------------------------------
+    # --- LLM backend ----------------------------------------------------------
     if args.vlm == "mock":
-        import json
-        # Realistic mock that demonstrates what a real LLM response would look like
-        llm = MockLLM(fixed_response=json.dumps([
-            {
-                "type": "obligation",
-                "description": (
-                    "The agent must push the box (B) before reaching "
-                    "the goal (G). All observed agents detour to interact with "
-                    "the box prior to moving toward the goal."
-                ),
-                "reasoning": (
-                    "Agents consistently take longer paths that pass through "
-                    "the box location, even though a shorter direct route to "
-                    "the goal exists. The PUSH action appears in every "
-                    "observed trajectory."
-                ),
-            },
-        ]))
-        print("LLM backend : MockLLM (realistic stub responses)\n")
+        llm = MockLLM(fixed_response=scenario.mock_llm_response)
+        print("LLM backend : MockLLM (scenario-specific stub)\n")
     elif args.vlm == "local":
         llm = LocalTransformersLLM(
             model_name=args.model,
@@ -165,13 +147,16 @@ def main() -> None:
         )
         print(f"LLM backend : API at {args.api_url}, model={args.model}\n")
 
-    # --- Set up learner ----------------------------------------------------
+    # --- Set up learner -------------------------------------------------------
     learner = NormLearner(env, llm, llm_query_interval=args.interval)
 
-    # --- Generate trajectories from every reachable starting cell ----------
-    trajectories = generate_from_all_starts(env)
-    print(f"Generated {len(trajectories)} norm-following trajectories "
-          f"(one per reachable starting cell).\n")
+    # --- Generate and process trajectories ------------------------------------
+    trajectories = scenario.generate(env)
+    print(f"Generated {len(trajectories)} norm-following trajectories.\n")
+
+    if not trajectories:
+        print("ERROR: no trajectories generated — check scenario layout.")
+        sys.exit(1)
 
     for idx, tau in enumerate(trajectories):
         queries_before = learner.llm_query_count
@@ -199,7 +184,7 @@ def main() -> None:
                 for n in rejected[-5:]:
                     print(f"  [{n.modality.upper()}] {n.description}")
 
-    # --- Print symbolic results -------------------------------------------
+    # --- Symbolic results -----------------------------------------------------
     sym = learner.get_symbolic_state()
     print("\n" + "=" * 60)
     print("SYMBOLIC RESULTS")
@@ -208,14 +193,12 @@ def main() -> None:
     print(f"\nConfirmed prohibitions ({len(sym.prohibitions)}):")
     for sa in sorted(sym.prohibitions, key=str):
         x, y = env.state_to_xy(sa[0])
-        print(f"  {env.describe_action(sa[1])} from ({x},{y})  "
-              f"[state {sa[0]}]")
+        print(f"  {env.describe_action(sa[1])} from ({x},{y})  [state {sa[0]}]")
 
     print(f"\nConfirmed obligations ({len(sym.obligations)}):")
     for sa in sorted(sym.obligations, key=str):
         x, y = env.state_to_xy(sa[0])
-        print(f"  {env.describe_action(sa[1])} from ({x},{y})  "
-              f"[state {sa[0]}]")
+        print(f"  {env.describe_action(sa[1])} from ({x},{y})  [state {sa[0]}]")
 
     print(f"\nDisjunctive prohibitions ({len(sym.disjunctive_prohibitions)}):")
     for disj in sym.disjunctive_prohibitions:
@@ -226,15 +209,13 @@ def main() -> None:
         print(f"  one-of: {' | '.join(parts)}")
 
     h_o = sym.hyp_obligations or set()
-    print(f"\nHypothesised obligations (pairs in EVERY trajectory): {len(h_o)}")
-    for sa in sorted(h_o, key=str)[:15]:
+    non_mv = {sa for sa in h_o if env.describe_action(sa[1]) not in {"NORTH","SOUTH","EAST","WEST"}}
+    print(f"\nHypothesised obligations — non-movement (in every trajectory): {len(non_mv)}")
+    for sa in sorted(non_mv, key=str):
         x, y = env.state_to_xy(sa[0])
         print(f"  {env.describe_action(sa[1])} from ({x},{y})  [state {sa[0]}]")
-    if len(h_o) > 15:
-        print(f"  … and {len(h_o) - 15} more")
 
-    print(f"\nHypothesised prohibitions (remaining trees): "
-          f"{len(sym.hyp_prohibitions)}")
+    print(f"\nHypothesised prohibitions (remaining trees): {len(sym.hyp_prohibitions)}")
     for h in sym.hyp_prohibitions[:10]:
         leaves = h.leaf_nodes()
         leaf_desc = []
@@ -243,15 +224,16 @@ def main() -> None:
                 for sa in lf.sequence[:3]:
                     x, y = env.state_to_xy(sa[0])
                     leaf_desc.append(f"{env.describe_action(sa[1])}({x},{y})")
-        bx, by = cfg.required_box_start
-        traj_desc = f"start={env.state_to_xy(sym.demonstrations[h.source_trajectory_id][0][0])}" \
-                    if h.source_trajectory_id is not None else ""
+        traj_desc = (
+            f"start={env.state_to_xy(sym.demonstrations[h.source_trajectory_id][0][0])}"
+            if h.source_trajectory_id is not None else ""
+        )
         print(f"  tree [{traj_desc}]: leaves={len(leaves)} candidates=[{', '.join(leaf_desc[:5])}]")
 
-    # --- Print VLM-grounded norms -----------------------------------------
+    # --- LLM-grounded norms ---------------------------------------------------
     grounded = learner.get_grounded_norms()
     print(f"\n{'=' * 60}")
-    print(f"VLM-GROUNDED NORMS ({len(grounded)})")
+    print(f"LLM-GROUNDED NORMS ({len(grounded)})")
     print("=" * 60)
     if not grounded:
         print("  (No grounded norms — use --vlm api or --vlm local for real output)")
@@ -264,9 +246,9 @@ def main() -> None:
         print(f"  reasoning  : {gn.reasoning}")
         print(f"  llm round  : {gn.iteration}")
 
-    # --- Visualise which cells are prohibited / hypothesised  -------------
+    # --- Grid annotation ------------------------------------------------------
     print(f"\n{'=' * 60}")
-    print("GRID ANNOTATION (P=prohibited, H=hypothesised, G=goal, B=box)")
+    print("GRID ANNOTATION  (P=prohibited, h=hypothesised, G=goal, s=spill, R=restricted, g=guard)")
     print("=" * 60)
 
     prohibited_cells = {env.state_to_xy(sa[0]) for sa in sym.prohibitions}
@@ -284,8 +266,13 @@ def main() -> None:
                 row.append("#")
             elif (x, y) == cfg.goal:
                 row.append("G")
-            elif (x, y) == cfg.required_box_start:
+            elif cfg.required_box_start and (x, y) == cfg.required_box_start:
                 row.append("B")
+            elif cfg.guard_pos and (x, y) == cfg.guard_pos:
+                row.append("g")
+            elif (x, y) in cfg.forbidden_cells:
+                lbl = cfg.cell_labels.get((x, y), "?")
+                row.append("s" if lbl == "spill" else "R")
             elif (x, y) in prohibited_cells:
                 row.append("P")
             elif (x, y) in hyp_cells:
@@ -294,7 +281,7 @@ def main() -> None:
                 row.append(".")
         print("".join(row))
     print()
-    print("P = confirmed prohibited cell  h = hypothesised  . = free")
+    print("P=confirmed prohibition  h=hypothesised  .=free")
 
 
 if __name__ == "__main__":
