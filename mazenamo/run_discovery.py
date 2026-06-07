@@ -184,19 +184,20 @@ def main() -> None:
         print_trajectory_on_grid(cfg, tau, env)
 
         if learner.llm_query_count > queries_before and learner.last_prompt is not None:
-            print("\n--- VLM PROMPT ---")
+            print("\n--- LLM PROMPT ---")
             print(learner.last_prompt)
 
             norms = learner.get_grounded_norms()
             rejected = learner.get_rejected_norms()
-            print(f"\n--- VLM OUTPUT  ({len(norms)} active norm(s)) ---")
+            print(f"\n--- LLM OUTPUT  ({len(norms)} active norm(s)) ---")
             for n in norms:
-                print(f"  [{n.norm_type.upper()}] {n.description}")
+                print(f"  [{n.modality.upper()}] {n.description}")
+                print(f"   action: {n.action}  norm_type: {n.norm_type}")
                 print(f"   reasoning: {n.reasoning}")
             if rejected:
                 print(f"\n--- REJECTED ({len(rejected)} total) ---")
                 for n in rejected[-5:]:
-                    print(f"  [{n.norm_type.upper()}] {n.description}")
+                    print(f"  [{n.modality.upper()}] {n.description}")
 
     # --- Print symbolic results -------------------------------------------
     sym = learner.get_symbolic_state()
@@ -255,9 +256,13 @@ def main() -> None:
     if not grounded:
         print("  (No grounded norms — use --vlm api or --vlm local for real output)")
     for gn in grounded:
-        print(f"\n  [{gn.norm_type.upper()}]  {gn.description}")
+        ctx = ", ".join(gn.context) if gn.context else "(none)"
+        print(f"\n  [{gn.modality.upper()}]  {gn.description}")
+        print(f"  action     : {gn.action}")
+        print(f"  context    : {ctx}")
+        print(f"  norm_type  : {gn.norm_type}")
         print(f"  reasoning  : {gn.reasoning}")
-        print(f"  vlm round  : {gn.iteration}")
+        print(f"  llm round  : {gn.iteration}")
 
     # --- Visualise which cells are prohibited / hypothesised  -------------
     print(f"\n{'=' * 60}")

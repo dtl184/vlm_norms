@@ -24,7 +24,10 @@ from .grounding import build_naturalization_prompt, build_norm_prompt
 from .symbolic import NormLearnerState, norm_discovery
 from .types import (
     AbstractNormHypothesis,
+    DeonticModality,
     GroundedNorm,
+    NORM_TYPE_PRIORITY,
+    NormTypeCategory,
     Trajectory,
     TrajectoryRecord,
     WorldState,
@@ -49,6 +52,9 @@ __all__ = [
     "Trajectory",
     "WorldState",
     "AbstractNormHypothesis",
+    "DeonticModality",
     "GroundedNorm",
+    "NORM_TYPE_PRIORITY",
+    "NormTypeCategory",
     "TrajectoryRecord",
 ]

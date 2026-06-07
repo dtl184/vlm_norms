@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Any, Dict, List, Literal, Tuple
 
 # ---------------------------------------------------------------------------
@@ -13,6 +14,35 @@ Action = Any
 StateActionPair = Tuple[State, Action]
 Trajectory = List[StateActionPair]
 WorldState = Dict[str, Any]  # semantic feature dict extracted by the environment
+
+
+# ---------------------------------------------------------------------------
+# Paper norm representation — N = ⟨C_N, M_N, α_N, Type_N⟩
+# "A Framework for Norm-Based Reference Resolution"
+# ---------------------------------------------------------------------------
+
+class DeonticModality(str, Enum):
+    """M_N: the deontic modality of a norm."""
+    OBLIGATORY = "obligatory"
+    FORBIDDEN = "forbidden"
+    PERMISSIBLE = "permissible"
+
+
+class NormTypeCategory(str, Enum):
+    """Type_N: norm category with priority SAFETY ≻ CLEANLINESS ≻ POLITENESS ≻ CONVENIENCE."""
+    SAFETY = "safety"
+    CLEANLINESS = "cleanliness"
+    POLITENESS = "politeness"
+    CONVENIENCE = "convenience"
+
+
+# Priority: higher value = higher priority
+NORM_TYPE_PRIORITY: Dict[NormTypeCategory, int] = {
+    NormTypeCategory.SAFETY: 3,
+    NormTypeCategory.CLEANLINESS: 2,
+    NormTypeCategory.POLITENESS: 1,
+    NormTypeCategory.CONVENIENCE: 0,
+}
 
 
 # ---------------------------------------------------------------------------
@@ -55,16 +85,30 @@ class AbstractNormHypothesis:
 
 @dataclass
 class GroundedNorm:
-    """Natural-language norm produced by grounding abstract hypotheses via VLM."""
+    """
+    LLM-grounded norm in the paper's 4-tuple representation.
+
+    N = ⟨C_N, M_N, α_N, Type_N⟩  (see "A Framework for Norm-Based
+    Reference Resolution")
+
+    Fields
+    ------
+    context   : C_N — list of contextual conditions, e.g. ["setting(grid)", "task(navigate)"]
+    modality  : M_N — deontic modality string ("obligatory" | "forbidden" | "permissible")
+    action    : α_N — action schema string, e.g. "push(agent, box)"
+    norm_type : Type_N — norm category ("safety" | "cleanliness" | "politeness" | "convenience")
+    """
+    # Paper 4-tuple
+    context: List[str]       # C_N
+    modality: str            # M_N — use DeonticModality values
+    action: str              # α_N
+    norm_type: str           # Type_N — use NormTypeCategory values
+    # Human-readable
     description: str
-    norm_type: str          # "prohibition" | "obligation" | "convention" | ...
     reasoning: str
-    # Indices into the abstract_hypotheses list that this norm was derived from
+    # Learner bookkeeping
     source_hypothesis_ids: List[int]
-    # Which VLM query round produced this (0-indexed)
     iteration: int
-    # Snapshot of symbolic pairs that backed this norm at grounding time;
-    # used to detect when later trajectories contradict it
     snapshot_pairs: List[StateActionPair] = field(default_factory=list)
 
 

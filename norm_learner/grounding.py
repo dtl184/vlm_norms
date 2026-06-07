@@ -370,8 +370,14 @@ def build_norm_prompt(
     lines.append(
         "Based on the observations above, what social norm are the agents following?\n"
         "Focus on the non-movement interaction actions that appear in every trajectory.\n"
+        "Express the norm using the 4-tuple representation N = ⟨C_N, M_N, α_N, Type_N⟩:\n"
+        "  context  (C_N): list of contextual conditions as strings\n"
+        "  modality (M_N): one of \"obligatory\" | \"forbidden\" | \"permissible\"\n"
+        "  action   (α_N): action schema string, e.g. \"push(agent, box)\"\n"
+        "  norm_type (Type_N): one of \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
         "Output ONLY a JSON array — no prose before or after:\n"
-        '[{"type": "obligation"|"prohibition"|"permission", '
+        '[{"context": ["cond1", ...], "modality": "obligatory|forbidden|permissible", '
+        '"action": "...", "norm_type": "safety|cleanliness|politeness|convenience", '
         '"description": "...", "reasoning": "..."}]'
     )
 
@@ -419,6 +425,9 @@ def parse_vlm_response(
     for hyp in abstract_hypotheses:
         all_pairs.extend(hyp.symbolic_pairs)
 
+    _VALID_MODALITIES = {"obligatory", "forbidden", "permissible"}
+    _VALID_CATEGORIES = {"safety", "cleanliness", "politeness", "convenience"}
+
     grounded: list[GroundedNorm] = []
     for item in raw_list:
         if not isinstance(item, dict):
@@ -426,10 +435,31 @@ def parse_vlm_response(
         description = item.get("description", "").strip()
         if not description:
             continue
+
+        raw_modality = item.get("modality", item.get("type", "")).lower()
+        # Map legacy "obligation"/"prohibition" to canonical modality strings
+        if raw_modality == "obligation":
+            raw_modality = "obligatory"
+        elif raw_modality == "prohibition":
+            raw_modality = "forbidden"
+        elif raw_modality == "permission":
+            raw_modality = "permissible"
+        modality = raw_modality if raw_modality in _VALID_MODALITIES else "obligatory"
+
+        raw_category = item.get("norm_type", "").lower()
+        norm_type = raw_category if raw_category in _VALID_CATEGORIES else "convenience"
+
+        context = item.get("context", [])
+        if not isinstance(context, list):
+            context = [str(context)] if context else []
+
         grounded.append(
             GroundedNorm(
+                context=context,
+                modality=modality,
+                action=item.get("action", "").strip(),
+                norm_type=norm_type,
                 description=description,
-                norm_type=item.get("type", "unknown"),
                 reasoning=item.get("reasoning", ""),
                 source_hypothesis_ids=list(range(len(abstract_hypotheses))),
                 iteration=iteration,
