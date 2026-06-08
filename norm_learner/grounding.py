@@ -199,16 +199,14 @@ def build_abstract_hypotheses(
             return trajectory_records[traj_id]
         return TrajectoryRecord([], {}, {}, {})
 
-    # --- Hypothesised obligations (H_O) — placed first; strongest signal ----
-    # Only keep non-movement actions (e.g. PUSH, GREET) — cardinal movements
-    # are incidental path artefacts, not social norms.
+    # --- Non-movement actions present in every trajectory (H_O) ---------------
+    # Only non-movement actions; movement actions are incidental path artefacts.
     if symbolic_state.hyp_obligations:
         n_traj = len(symbolic_state.demonstrations)
         all_h_o = sorted(symbolic_state.hyp_obligations, key=str)
         key_pairs = [sa for sa in all_h_o
                      if env.describe_action(sa[1]) not in _MOVEMENT_ACTION_NAMES]
         if key_pairs:
-            # Temporal timing: where in the trajectory does each action appear?
             timing = _action_timing(
                 symbolic_state.demonstrations, set(key_pairs), env
             )
@@ -218,23 +216,21 @@ def build_abstract_hypotheses(
 
             action_lines = []
             for sa in key_pairs:
-                a_name = env.describe_action(sa[1])
-                desc = f"[{_format_pair(sa, env)}]"
+                desc = f"  {_format_pair(sa, env)}"
                 if sa[1] in timing:
                     mean_pos, phase = timing[sa[1]]
-                    desc += f"  — trajectory position {mean_pos:.0%} ({phase})"
+                    desc += f" — occurs at {mean_pos:.0%} through trajectory ({phase})"
                 action_lines.append(desc)
-            joined = "\n  ".join(action_lines)
+            joined = "\n".join(action_lines)
 
             temporal_note = ""
             if order:
                 order_strs = [
-                    f"{env.describe_action(a)} BEFORE {env.describe_action(b)}"
+                    f"{env.describe_action(a)} before {env.describe_action(b)}"
                     for (a, b) in order
                 ]
                 temporal_note = (
-                    f"\n  Temporal ordering (consistent across all demos): "
-                    + ", ".join(order_strs)
+                    f"\n  Consistent ordering: " + ", ".join(order_strs)
                 )
 
             hypotheses.append(
@@ -246,16 +242,15 @@ def build_abstract_hypotheses(
                     post_conditions={},
                     state_delta={},
                     symbolic_summary=(
-                        f"INTERACTION ACTIONS — present in all {n_traj} demonstrations "
-                        f"(strongest evidence for obligations):\n"
-                        f"  {joined}"
+                        f"Non-movement action(s) present in all {n_traj} trajectories:\n"
+                        f"{joined}"
                         f"{temporal_note}"
                     ),
                     supporting_count=n_traj,
                 )
             )
 
-    # --- Confirmed prohibitions -------------------------------------------
+    # --- Action never observed (confirmed prohibition) ---------------------
     for sa in sorted(symbolic_state.prohibitions, key=str):
         hypotheses.append(
             AbstractNormHypothesis(
@@ -266,14 +261,14 @@ def build_abstract_hypotheses(
                 post_conditions={},
                 state_delta={},
                 symbolic_summary=(
-                    f"CONFIRMED PROHIBITION: agent never performs "
-                    f"[{_format_pair(sa, env)}]"
+                    f"Action never observed in any trajectory: "
+                    f"{_format_pair(sa, env)}"
                 ),
                 supporting_count=len(symbolic_state.demonstrations),
             )
         )
 
-    # --- Confirmed obligations --------------------------------------------
+    # --- Action always taken (confirmed obligation) -----------------------
     for sa in sorted(symbolic_state.obligations, key=str):
         hypotheses.append(
             AbstractNormHypothesis(
@@ -284,8 +279,8 @@ def build_abstract_hypotheses(
                 post_conditions={},
                 state_delta={},
                 symbolic_summary=(
-                    f"CONFIRMED OBLIGATION: agent always performs "
-                    f"[{_format_pair(sa, env)}]"
+                    f"Action taken in every trajectory: "
+                    f"{_format_pair(sa, env)}"
                 ),
                 supporting_count=len(symbolic_state.demonstrations),
             )
@@ -315,42 +310,34 @@ def build_abstract_hypotheses(
         if singleton_leaves and all(
             lf.sequence is not None and len(lf.sequence) == 1 for lf in leaves
         ):
-            # All leaves are singletons — near-confirmed
             leaf_pairs = [lf.sequence[0] for lf in singleton_leaves]
             norm_type = (
                 "disjunctive_prohibition" if len(leaf_pairs) > 1 else "prohibition"
             )
             if norm_type == "prohibition":
-                candidate_desc = f"[{_format_pair(leaf_pairs[0], env)}]"
-                prefix = "HYPOTHESISED PROHIBITION (nearly confirmed):"
+                candidate_desc = _format_pair(leaf_pairs[0], env)
+                summary = f"Agent avoided: {candidate_desc}"
             else:
-                joined = " OR ".join(f"[{_format_pair(sa, env)}]" for sa in leaf_pairs)
+                joined = " or ".join(_format_pair(sa, env) for sa in leaf_pairs)
                 candidate_desc = joined
-                prefix = "DISJUNCTIVE PROHIBITION:"
-            summary = f"{prefix} one of {candidate_desc} is likely prohibited."
+                summary = f"Agent avoided one of: {candidate_desc}"
         else:
-            # Unrefined: the shortcut area has multiple candidate pairs
-            leaf_pairs = all_leaf_pairs[:10]  # cap for readability
+            leaf_pairs = all_leaf_pairs[:10]
             norm_type = "disjunctive_prohibition"
             area_descs = [_format_pair(sa, env) for sa in leaf_pairs[:5]]
-            joined = ", ".join(f"[{d}]" for d in area_descs)
+            joined = ", ".join(area_descs)
             if len(leaf_pairs) > 5:
                 joined += f" … (+{len(leaf_pairs)-5} more)"
-            summary = (
-                f"SHORTCUT AVOIDANCE: agent took a longer path; "
-                f"at least one of these pairs may be prohibited: {joined}."
-            )
+            summary = f"Agent bypassed a shorter route; avoided area includes: {joined}"
 
-        # Describe the shortcut itself for VLM context
         shortcut_desc = " → ".join(
             _format_pair(sa, env) for sa in h.original_shortcut[:5]
         )
         if len(h.original_shortcut) > 5:
             shortcut_desc += " … (truncated)"
         summary += (
-            f"  Shortcut not taken: [{shortcut_desc}]. "
-            f"Observed segment: {len(h.observed_segment)} steps vs "
-            f"shortcut: {len(h.original_shortcut)} steps."
+            f". Detour: {len(h.observed_segment)} steps taken vs "
+            f"{len(h.original_shortcut)}-step shortcut via [{shortcut_desc}]."
         )
 
         record = _record_for(h.source_trajectory_id)
@@ -371,11 +358,11 @@ def build_abstract_hypotheses(
             )
         )
 
-    # --- Disjunctive prohibitions (confirmed but ambiguous) ---------------
+    # --- Confirmed ambiguous prohibition (disjunctive) --------------------
     for disj in symbolic_state.disjunctive_prohibitions:
         pairs = list(disj)
         descs = [_format_pair(sa, env) for sa in pairs]
-        joined = " OR ".join(f"[{d}]" for d in descs)
+        joined = " or ".join(descs)
         hypotheses.append(
             AbstractNormHypothesis(
                 norm_type="disjunctive_prohibition",
@@ -385,8 +372,8 @@ def build_abstract_hypotheses(
                 post_conditions={},
                 state_delta={},
                 symbolic_summary=(
-                    f"DISJUNCTIVE PROHIBITION (confirmed): "
-                    f"at least one of {joined} is prohibited."
+                    f"At least one of these is never taken "
+                    f"(ambiguous — cannot distinguish which): {joined}"
                 ),
                 supporting_count=len(symbolic_state.demonstrations),
             )
@@ -437,54 +424,86 @@ def build_norm_prompt(
     abstract_hypotheses: list[AbstractNormHypothesis],
     n_trajectories: int,
     nl_context: str | None = None,
+    existing_norms: list[GroundedNorm] | None = None,
 ) -> str:
     """
     Step 2 of two-step LLM grounding — norm-discovery prompt.
 
     Structure
     ---------
-    1. Naturalized description of the latest trajectory (from Step 1).
-    2. Actions present in every observed trajectory (strongest obligation signal).
-    3. JSON output instructions.
+    1. Natural-language description of the latest trajectory (from Step 1).
+    2. Symbolic hypotheses from the norm-discovery algorithm, presented
+       neutrally as evidence rather than pre-labelled conclusions.
+    3. Existing grounded norms from earlier rounds (for continuity).
+    4. Output format instructions.
     """
     lines: list[str] = []
 
-    # --- Naturalized context from Step 1 ----------------------------------
+    # --- Natural-language context -----------------------------------------
     if nl_context:
-        lines.append("LATEST TRAJECTORY DESCRIPTION:")
+        lines.append(f"LATEST TRAJECTORY ({n_trajectories} observed so far):")
         lines.append(nl_context.strip())
         lines.append("")
 
-    # --- Common actions (H_O) — the primary signal ------------------------
-    h_o_hyp = next(
-        (h for h in abstract_hypotheses
-         if h.norm_type == "obligation" and h.supporting_count == n_trajectories),
-        None,
+    # --- Symbolic evidence, grouped by type -------------------------------
+    lines.append("SYMBOLIC PATTERNS detected across all trajectories:")
+    lines.append(
+        "(These are statistical patterns from a symbolic algorithm — not "
+        "pre-judged conclusions. Not every pattern necessarily reflects a norm.)"
     )
-    if h_o_hyp and n_trajectories > 0:
-        lines.append(
-            f"I have observed {n_trajectories} agents completing a task. "
-            f"The following NON-MOVEMENT actions appear in EVERY trajectory "
-            f"(strongest evidence for an obligation norm):"
-        )
-        for sa_desc in h_o_hyp.symbolic_summary.split("\n")[1:]:
-            lines.append(sa_desc)
-    else:
-        lines.append(
-            f"I have observed {n_trajectories} agents completing a task. "
-            f"Not enough data yet to identify common non-movement actions."
-        )
     lines.append("")
 
-    # --- Output instructions ----------------------------------------------
+    # Group by broad category for readability
+    recurring   = [h for h in abstract_hypotheses
+                   if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
+    obligations = [h for h in abstract_hypotheses
+                   if h.norm_type == "obligation" and h.supporting_count < n_trajectories]
+    prohibitions = [h for h in abstract_hypotheses if h.norm_type == "prohibition"]
+    disjunctive  = [h for h in abstract_hypotheses
+                    if h.norm_type in ("disjunctive_prohibition", "disjunctive_obligation")]
+
+    groups = [
+        ("Recurring non-movement actions (appear in every trajectory)", recurring),
+        ("Actions always taken", obligations),
+        ("Actions never taken", prohibitions),
+        ("Shortcut bypasses / ambiguous avoidances", disjunctive),
+    ]
+    for group_label, group in groups:
+        if not group:
+            continue
+        shown = group[:_MAX_HYPOTHESES_IN_PROMPT]
+        lines.append(f"{group_label}:")
+        for hyp in shown:
+            for ln in hyp.symbolic_summary.strip().split("\n"):
+                lines.append(f"  {ln}")
+            if hyp.pre_conditions:
+                lines.append(f"  Pre:  {_format_world_state(hyp.pre_conditions)}")
+            if hyp.post_conditions:
+                lines.append(f"  Post: {_format_world_state(hyp.post_conditions)}")
+        if len(group) > _MAX_HYPOTHESES_IN_PROMPT:
+            lines.append(f"  … and {len(group) - _MAX_HYPOTHESES_IN_PROMPT} more")
+        lines.append("")
+
+    # --- Existing grounded norms ------------------------------------------
+    if existing_norms:
+        lines.append("NORMS IDENTIFIED IN EARLIER ROUNDS (for reference / refinement):")
+        for n in existing_norms:
+            lines.append(f"  [{n.modality.upper()}] {n.description}")
+        lines.append("")
+
+    # --- Task and output format -------------------------------------------
     lines.append(
-        "Based on the observations above, what social norm are the agents following?\n"
-        "Focus on the non-movement interaction actions that appear in every trajectory.\n"
-        "Express the norm using the 4-tuple representation N = ⟨C_N, M_N, α_N, Type_N⟩:\n"
+        "TASK: Given the symbolic patterns and trajectory context above, identify "
+        "social norms that best explain why the agents consistently deviate from the "
+        "shortest path or include certain actions. A norm should capture the underlying "
+        "social rule, not merely describe what was observed.\n"
+        "\n"
+        "Express each norm as a 4-tuple N = ⟨C_N, M_N, α_N, Type_N⟩:\n"
         "  context  (C_N): list of contextual conditions as strings\n"
-        "  modality (M_N): one of \"obligatory\" | \"forbidden\" | \"permissible\"\n"
+        "  modality (M_N): \"obligatory\" | \"forbidden\" | \"permissible\"\n"
         "  action   (α_N): action schema string, e.g. \"push(agent, box)\"\n"
-        "  norm_type (Type_N): one of \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
+        "  norm_type (Type_N): \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
+        "\n"
         "Output ONLY a JSON array — no prose before or after:\n"
         '[{"context": ["cond1", ...], "modality": "obligatory|forbidden|permissible", '
         '"action": "...", "norm_type": "safety|cleanliness|politeness|convenience", '

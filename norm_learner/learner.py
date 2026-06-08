@@ -216,6 +216,7 @@ class NormLearner:
             abstract_hyps,
             len(self._trajectory_records),
             nl_context=nl_context,
+            existing_norms=self._grounded_norms or None,
         )
         self._last_prompt = prompt
         logger.debug("Norm-discovery prompt (first 500 chars):\n%s", prompt[:500])
