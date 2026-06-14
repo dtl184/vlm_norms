@@ -110,6 +110,18 @@ class NormLearner:
         self._trajectory_records.append(record)
 
         self._symbolic_state = norm_discovery(tau, self.env, self._symbolic_state)
+
+        # Confirm obligations: non-navigation actions seen in every trajectory so far.
+        # hyp_obligations is the intersection across all demonstrations; once ≥2
+        # trajectories agree on a non-navigation pair, promote it to confirmed.
+        _NAV = {"NORTH", "SOUTH", "EAST", "WEST"}
+        if len(self._trajectory_records) >= 2 and self._symbolic_state.hyp_obligations:
+            confirmed = {
+                sa for sa in self._symbolic_state.hyp_obligations
+                if self.env.describe_action(sa[1]) not in _NAV
+            }
+            self._symbolic_state.obligations.update(confirmed)
+
         self._verify_grounded_norms()
 
         n = len(self._trajectory_records)

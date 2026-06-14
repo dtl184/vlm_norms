@@ -199,57 +199,6 @@ def build_abstract_hypotheses(
             return trajectory_records[traj_id]
         return TrajectoryRecord([], {}, {}, {})
 
-    # --- Non-movement actions present in every trajectory (H_O) ---------------
-    # Only non-movement actions; movement actions are incidental path artefacts.
-    if symbolic_state.hyp_obligations:
-        n_traj = len(symbolic_state.demonstrations)
-        all_h_o = sorted(symbolic_state.hyp_obligations, key=str)
-        key_pairs = [sa for sa in all_h_o
-                     if env.describe_action(sa[1]) not in _MOVEMENT_ACTION_NAMES]
-        if key_pairs:
-            timing = _action_timing(
-                symbolic_state.demonstrations, set(key_pairs), env
-            )
-            order = _temporal_order(
-                symbolic_state.demonstrations, set(key_pairs), env
-            )
-
-            action_lines = []
-            for sa in key_pairs:
-                desc = f"  {_format_pair(sa, env)}"
-                if sa[1] in timing:
-                    mean_pos, phase = timing[sa[1]]
-                    desc += f" — occurs at {mean_pos:.0%} through trajectory ({phase})"
-                action_lines.append(desc)
-            joined = "\n".join(action_lines)
-
-            temporal_note = ""
-            if order:
-                order_strs = [
-                    f"{env.describe_action(a)} before {env.describe_action(b)}"
-                    for (a, b) in order
-                ]
-                temporal_note = (
-                    f"\n  Consistent ordering: " + ", ".join(order_strs)
-                )
-
-            hypotheses.append(
-                AbstractNormHypothesis(
-                    norm_type="obligation",
-                    symbolic_pairs=key_pairs,
-                    trajectory_ids=list(range(n_traj)),
-                    pre_conditions={},
-                    post_conditions={},
-                    state_delta={},
-                    symbolic_summary=(
-                        f"Non-movement action(s) present in all {n_traj} trajectories:\n"
-                        f"{joined}"
-                        f"{temporal_note}"
-                    ),
-                    supporting_count=n_traj,
-                )
-            )
-
     # --- Action never observed (confirmed prohibition) ---------------------
     for sa in sorted(symbolic_state.prohibitions, key=str):
         hypotheses.append(
@@ -452,19 +401,15 @@ def build_norm_prompt(
     lines.append("")
 
     # Group by broad category for readability
-    recurring    = [h for h in abstract_hypotheses
-                    if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
-    obligations  = [h for h in abstract_hypotheses
-                    if h.norm_type == "obligation" and h.supporting_count < n_trajectories]
+    obligations  = [h for h in abstract_hypotheses if h.norm_type == "obligation"]
     prohibitions = [h for h in abstract_hypotheses if h.norm_type == "prohibition"]
     disjunctive  = [h for h in abstract_hypotheses
                     if h.norm_type in ("disjunctive_prohibition", "disjunctive_obligation")]
 
     groups = [
-        ("Recurring non-movement actions (appear in every trajectory)", recurring),
         ("Obligations", obligations),
         ("Prohibitions", prohibitions),
-        ("Disjunctive Hypotheses", disjunctive),
+        ("Disjunctive hypotheses", disjunctive),
     ]
     for group_label, group in groups:
         if not group:
