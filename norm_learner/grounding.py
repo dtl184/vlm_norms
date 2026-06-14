@@ -438,6 +438,7 @@ def build_norm_prompt(
         "social rule, not merely describe what was observed.\n"
         "\n"
         "Express each norm as a 4-tuple ⟨Context, Modality, Action, Type⟩:\n"
+        "  description: one concise English sentence describing the social norm\n"
         "  context: list of contextual conditions as strings\n"
         "  modality: \"obligatory\" | \"forbidden\" | \"permissible\"\n"
         "  action: action schema string, e.g. \"push(agent, box)\"\n"
@@ -499,9 +500,9 @@ def parse_vlm_response(
     for item in raw_list:
         if not isinstance(item, dict):
             continue
-        # description = item.get("description", "").strip()
-        # if not description:
-        #     continue
+        description = item.get("description", "").strip()
+        if not description:
+            continue
 
         raw_modality = item.get("modality", item.get("type", "")).lower()
         # Map legacy "obligation"/"prohibition" to canonical modality strings
