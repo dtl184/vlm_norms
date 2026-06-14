@@ -427,7 +427,7 @@ def build_norm_prompt(
     if existing_norms:
         lines.append("Previously Identified Norms:")
         for n in existing_norms:
-            lines.append(f"  [{n.modality.upper()}] {n.description}")
+            lines.append(f"  [{n.modality.upper()}]")
         lines.append("")
 
     # --- Task and output format -------------------------------------------
@@ -526,7 +526,6 @@ def parse_vlm_response(
                 modality=modality,
                 action=item.get("action", "").strip(),
                 norm_type=norm_type,
-                description=description,
                 source_hypothesis_ids=list(range(len(abstract_hypotheses))),
                 iteration=iteration,
                 snapshot_pairs=list(all_pairs),
