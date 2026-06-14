@@ -211,11 +211,7 @@ class NormLearner:
         nl_context: str | None = None
         if self._trajectory_records:
             rec = self._trajectory_records[-1]
-            current_steps = [
-                f"{self.env.describe_action(a)} from {self.env.describe_state(s)}"
-                for s, a in rec.trajectory
-            ]
-            nat_prompt = build_naturalization_prompt(rec, current_steps)
+            nat_prompt = build_naturalization_prompt(rec.trajectory, self.env)
             logger.debug("Naturalization prompt:\n%s", nat_prompt)
             try:
                 nl_context = self.llm.query(nat_prompt)

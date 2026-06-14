@@ -342,31 +342,27 @@ def _format_world_state(ws: WorldState) -> str:
 
 
 def build_naturalization_prompt(
-    record: TrajectoryRecord,
-    trajectory_steps: list[str],
+    trajectory: "Trajectory",
+    env: "EnvironmentInterface",
 ) -> str:
     """
     Step 1 of two-step LLM grounding.
 
-    Ask the LLM to describe in plain English what happened in this trajectory
-    based on its pre/post conditions and step sequence.  The result is then
-    passed as ``nl_context`` to ``build_norm_prompt``.
+    Sends only the first and last (state, action) pairs to the LLM and asks it
+    to describe pre- and post-conditions in plain English.
     """
-    lines: list[str] = []
-    lines.append(
-        "An agent completed a task in the Proper Shopper environment. "
-        "Describe in 2-3 plain English sentences what the agent did and "
-        "what changed in the world. Be concise and factual."
-    )
-    lines.append("")
-    lines.append(f"Pre-conditions : {_format_world_state(record.pre_conditions)}")
-    lines.append(f"Post-conditions: {_format_world_state(record.post_conditions)}")
-    lines.append(f"State changes  : {_format_world_state(record.delta)}")
-    lines.append("")
-    lines.append(f"Action sequence ({len(trajectory_steps)} steps):")
-    for step in trajectory_steps:
-        lines.append(f"  {step}")
-    return "\n".join(lines)
+    if not trajectory:
+        return ""
+    first_state, first_action = trajectory[0]
+    last_state, last_action = trajectory[-1]
+    return "\n".join([
+        "An agent completed a task. Based on the first and last observed state-action"
+        " pairs below, describe the pre-conditions and post-conditions in 1-2 plain"
+        " English sentences.",
+        "",
+        f"First: {env.describe_action(first_action)} from {env.describe_state(first_state)}",
+        f"Last:  {env.describe_action(last_action)} from {env.describe_state(last_state)}",
+    ])
 
 
 def build_norm_prompt(
@@ -503,9 +499,9 @@ def parse_vlm_response(
     for item in raw_list:
         if not isinstance(item, dict):
             continue
-        description = item.get("description", "").strip()
-        if not description:
-            continue
+        # description = item.get("description", "").strip()
+        # if not description:
+        #     continue
 
         raw_modality = item.get("modality", item.get("type", "")).lower()
         # Map legacy "obligation"/"prohibition" to canonical modality strings
