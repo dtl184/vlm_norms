@@ -122,19 +122,13 @@ class ProperShopperEnvironment(EnvironmentInterface):
             with open(raw) as f:
                 raw = json.load(f)
 
-        traj: Trajectory = []
-        for i, step in enumerate(raw_traj):
-            action = step["action"]
-
-            # Pair each action with the state BEFORE that action.
-            # The recorded state appears to be post-action, so using step["state"]
-            # makes payment look like checkout + no-items.
-            if i == 0:
-                state_for_action = step["state"]
-            else:
-                state_for_action = raw_traj[i - 1]["state"]
-
-            traj.append((self.abstract_state(state_for_action), action))
+        trajectories: list[Trajectory] = []
+        for raw_traj in raw:
+            traj: Trajectory = [
+                (self.abstract_state(step["state"]), step["action"])
+                for step in raw_traj
+            ]
+            trajectories.append(traj)
         return trajectories
 
     # ------------------------------------------------------------------
