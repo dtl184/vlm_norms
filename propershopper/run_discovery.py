@@ -60,10 +60,6 @@ _MOCK_RESPONSE = json.dumps([
         "modality": "obligatory",
         "action": "pay(agent, checkout)",
         "norm_type": "convenience",
-        "description": (
-            "After picking up items in a supermarket, a shopper is obligated "
-            "to pay at the checkout counter before leaving the store."
-        ),
     }
 ])
 
@@ -221,7 +217,6 @@ def main() -> None:
             norms = learner.get_grounded_norms()
             print(f"\n--- LLM OUTPUT ({len(norms)} grounded norm(s)) ---")
             for n in norms:
-                print(f"  [{n.modality.upper()}] {n.description}")
                 print(f"   action    : {n.action}")
                 print(f"   context   : {', '.join(n.context)}")
                 print(f"   norm_type : {n.norm_type}")
@@ -257,7 +252,7 @@ def main() -> None:
         print("  Re-run with --llm api or --llm local for real LLM output.")
     for gn in grounded:
         ctx = ", ".join(gn.context) if gn.context else "(none)"
-        print(f"\n  [{gn.modality.upper()}]  {gn.description}")
+        print(f"\n  [{gn.modality.upper()}]")
         print(f"  action     : {gn.action}")
         print(f"  context    : {ctx}")
         print(f"  norm_type  : {gn.norm_type}")
