@@ -252,7 +252,7 @@ def main() -> None:
         print("  Re-run with --llm api or --llm local for real LLM output.")
     for gn in grounded:
         ctx = ", ".join(gn.context) if gn.context else "(none)"
-        print(f"\n  [{gn.modality.upper()}]")
+        print(f"\n  [{gn.modality.upper()}]  {gn.description}")
         print(f"  action     : {gn.action}")
         print(f"  context    : {ctx}")
         print(f"  norm_type  : {gn.norm_type}")
