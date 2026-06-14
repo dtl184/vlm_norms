@@ -405,7 +405,7 @@ def build_naturalization_prompt(
     """
     lines: list[str] = []
     lines.append(
-        "An agent completed a task in a grid world. "
+        "An agent completed a task in the Proper Shopper environment. "
         "Describe in 2-3 plain English sentences what the agent did and "
         "what changed in the world. Be concise and factual."
     )
@@ -446,16 +446,14 @@ def build_norm_prompt(
         lines.append("")
 
     # --- Symbolic evidence, grouped by type -------------------------------
-    lines.append("SYMBOLIC PATTERNS detected across all trajectories:")
     lines.append(
-        "(These are statistical patterns from a symbolic algorithm — not "
-        "pre-judged conclusions. Not every pattern necessarily reflects a norm.)"
+        "Abstract norm hypotheses as determined from symbolic analysis of trajectories"
     )
     lines.append("")
 
     # Group by broad category for readability
-    recurring   = [h for h in abstract_hypotheses
-                   if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
+    # recurring   = [h for h in abstract_hypotheses
+    #                if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
     obligations = [h for h in abstract_hypotheses
                    if h.norm_type == "obligation" and h.supporting_count < n_trajectories]
     prohibitions = [h for h in abstract_hypotheses if h.norm_type == "prohibition"]
@@ -463,10 +461,10 @@ def build_norm_prompt(
                     if h.norm_type in ("disjunctive_prohibition", "disjunctive_obligation")]
 
     groups = [
-        ("Recurring non-movement actions (appear in every trajectory)", recurring),
-        ("Actions always taken", obligations),
-        ("Actions never taken", prohibitions),
-        ("Shortcut bypasses / ambiguous avoidances", disjunctive),
+        #("Recurring non-movement actions (appear in every trajectory)", recurring),
+        ("Obligations", obligations),
+        ("Prohibitions", prohibitions),
+        ("Disjunctive Hypotheses", disjunctive),
     ]
     for group_label, group in groups:
         if not group:
@@ -486,7 +484,7 @@ def build_norm_prompt(
 
     # --- Existing grounded norms ------------------------------------------
     if existing_norms:
-        lines.append("NORMS IDENTIFIED IN EARLIER ROUNDS (for reference / refinement):")
+        lines.append("Previously Identified Norms:")
         for n in existing_norms:
             lines.append(f"  [{n.modality.upper()}] {n.description}")
         lines.append("")
@@ -498,16 +496,15 @@ def build_norm_prompt(
         "shortest path or include certain actions. A norm should capture the underlying "
         "social rule, not merely describe what was observed.\n"
         "\n"
-        "Express each norm as a 4-tuple N = ⟨C_N, M_N, α_N, Type_N⟩:\n"
-        "  context  (C_N): list of contextual conditions as strings\n"
-        "  modality (M_N): \"obligatory\" | \"forbidden\" | \"permissible\"\n"
-        "  action   (α_N): action schema string, e.g. \"push(agent, box)\"\n"
-        "  norm_type (Type_N): \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
+        "Express each norm as a 4-tuple ⟨Context, Modality, Action, Type⟩:\n"
+        "  context: list of contextual conditions as strings\n"
+        "  modality: \"obligatory\" | \"forbidden\" | \"permissible\"\n"
+        "  action: action schema string, e.g. \"push(agent, box)\"\n"
+        "  type: \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
         "\n"
-        "Output ONLY a JSON array — no prose before or after:\n"
+        "Output only a JSON array, no prose before or after:\n"
         '[{"context": ["cond1", ...], "modality": "obligatory|forbidden|permissible", '
-        '"action": "...", "norm_type": "safety|cleanliness|politeness|convenience", '
-        '"description": "...", "reasoning": "..."}]'
+        '"action": "...", "norm_type": "safety|cleanliness|politeness|convenience"}]'
     )
 
     return "\n".join(lines)
