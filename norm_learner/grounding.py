@@ -586,7 +586,6 @@ def parse_vlm_response(
                 action=item.get("action", "").strip(),
                 norm_type=norm_type,
                 description=description,
-                reasoning=item.get("reasoning", ""),
                 source_hypothesis_ids=list(range(len(abstract_hypotheses))),
                 iteration=iteration,
                 snapshot_pairs=list(all_pairs),
