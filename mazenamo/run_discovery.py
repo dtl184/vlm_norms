@@ -178,7 +178,6 @@ def main() -> None:
             for n in norms:
                 print(f"  [{n.modality.upper()}] {n.description}")
                 print(f"   action: {n.action}  norm_type: {n.norm_type}")
-                print(f"   reasoning: {n.reasoning}")
             if rejected:
                 print(f"\n--- REJECTED ({len(rejected)} total) ---")
                 for n in rejected[-5:]:
@@ -243,7 +242,6 @@ def main() -> None:
         print(f"  action     : {gn.action}")
         print(f"  context    : {ctx}")
         print(f"  norm_type  : {gn.norm_type}")
-        print(f"  reasoning  : {gn.reasoning}")
         print(f"  llm round  : {gn.iteration}")
 
     # --- Grid annotation ------------------------------------------------------
