@@ -103,8 +103,6 @@ class GroundedNorm:
     modality: str            # M_N — use DeonticModality values
     action: str              # α_N
     norm_type: str           # Type_N — use NormTypeCategory values
-    # Human-readable
-    description: str
     # Learner bookkeeping
     source_hypothesis_ids: List[int]
     iteration: int
