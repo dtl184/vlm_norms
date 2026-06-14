@@ -86,17 +86,17 @@ class AbstractNormHypothesis:
 @dataclass
 class GroundedNorm:
     """
-    LLM-grounded norm in the paper's 4-tuple representation.
+    LLM-grounded norm in the Mitch's 4-tuple representation.
 
-    N = ⟨C_N, M_N, α_N, Type_N⟩  (see "A Framework for Norm-Based
+    N = ⟨Context, Modality, Action, Type⟩  (see "A Framework for Norm-Based
     Reference Resolution")
 
     Fields
     ------
-    context   : C_N — list of contextual conditions, e.g. ["setting(grid)", "task(navigate)"]
-    modality  : M_N — deontic modality string ("obligatory" | "forbidden" | "permissible")
-    action    : α_N — action schema string, e.g. "push(agent, box)"
-    norm_type : Type_N — norm category ("safety" | "cleanliness" | "politeness" | "convenience")
+    context: list of contextual conditions, e.g. ["setting(grid)", "task(navigate)"]
+    modality: deontic modality string ("obligatory" | "forbidden" | "permissible")
+    action: action schema string, e.g. "push(agent, box)"
+    type: norm category ("safety" | "cleanliness" | "politeness" | "convenience")
     """
     # Paper 4-tuple
     context: List[str]       # C_N
@@ -105,7 +105,6 @@ class GroundedNorm:
     norm_type: str           # Type_N — use NormTypeCategory values
     # Human-readable
     description: str
-    reasoning: str
     # Learner bookkeeping
     source_hypothesis_ids: List[int]
     iteration: int
