@@ -1,0 +1,6214 @@
+[
+    [
+        {
+            "state": {
+                "x": 16.125625481963834,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.975625481963833,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.825625481963833,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.675625481963833,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.525625481963832,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.375625481963832,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.225625481963831,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 15.075625481963831,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.92562548196383,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.77562548196383,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.62562548196383,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.47562548196383,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.32562548196383,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.175625481963829,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 14.025625481963829,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.875625481963828,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.725625481963828,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.575625481963828,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.425625481963827,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.275625481963827,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 13.125625481963827,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.975625481963826,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.825625481963826,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.675625481963825,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.525625481963825,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.375625481963825,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.225625481963824,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 12.075625481963824,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.925625481963824,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.775625481963823,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.625625481963823,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.475625481963823,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.325625481963822,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.175625481963822,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.025625481963822,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.875625481963821,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.72562548196382,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.57562548196382,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.42562548196382,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.27562548196382,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.12562548196382,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.975625481963819,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.825625481963819,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.675625481963818,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.525625481963818,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.375625481963818,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.225625481963817,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.075625481963817,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.925625481963817,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.775625481963816,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.625625481963816,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.475625481963815,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.325625481963815,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.175625481963815,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.025625481963814,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.875625481963814,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.725625481963814,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.575625481963813,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.425625481963813,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.275625481963813,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.125625481963812,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 14.882868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.032868030871827,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.182868030871827,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.332868030871827,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.482868030871828,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.632868030871828,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.782868030871828,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 15.932868030871829,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.975625481963812,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.825625481963812,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.675625481963811,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.525625481963811,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.3756254819638105,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.22562548196381,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.07562548196381,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.775625481963809,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.625625481963809,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.475625481963808,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.325625481963808,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.175625481963808,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.025625481963807,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.875625481963807,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.725625481963807,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.575625481963806,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.125625481963805,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.9756254819638053,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.8256254819638054,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.08286803087183,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.232868030871828,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.382868030871826,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.532868030871825,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.682868030871823,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.832868030871822,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 16.832868030871822,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 16.832868030871822,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 16.832868030871822,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 16.98286803087182,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.13286803087182,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.282868030871818,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.432868030871816,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.582868030871815,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.732868030871813,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 17.882868030871812,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 18.03286803087181,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.8256254819638054,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.9756254819638053,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.125625481963805,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 18.03286803087181,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.882868030871812,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.732868030871813,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.582868030871815,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.432868030871816,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.282868030871818,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 17.13286803087182,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.98286803087182,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.832868030871822,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.682868030871823,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.532868030871825,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.382868030871826,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.232868030871828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 16.08286803087183,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.932868030871829,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.782868030871828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.632868030871828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.482868030871828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.332868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.575625481963806,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.725625481963807,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.875625481963807,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.025625481963807,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.175625481963808,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.325625481963808,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.475625481963808,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.625625481963809,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.775625481963809,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 15.182868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 15.032868030871827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.882868030871826,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.732868030871826,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.582868030871825,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.9256254819638094,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.775625481963809,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.625625481963809,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.475625481963808,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.325625481963808,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.175625481963808,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.025625481963807,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.875625481963807,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.725625481963807,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.575625481963806,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.612868030871825,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.462868030871824,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.312868030871824,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.162868030871824,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 14.012868030871823,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.862868030871823,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.712868030871823,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.562868030871822,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.412868030871822,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.262868030871822,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 13.112868030871821,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.962868030871821,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.81286803087182,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.66286803087182,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.51286803087182,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.36286803087182,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.21286803087182,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 12.062868030871819,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.912868030871818,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.762868030871818,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.612868030871818,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.462868030871817,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.312868030871817,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.162868030871817,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 11.012868030871816,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.862868030871816,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.712868030871816,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.562868030871815,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.412868030871815,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.262868030871815,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 10.112868030871814,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.962868030871814,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.812868030871813,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.662868030871813,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.512868030871813,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.362868030871812,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.212868030871812,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 9.062868030871812,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.912868030871811,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.762868030871811,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.61286803087181,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.46286803087181,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.31286803087181,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.16286803087181,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 8.01286803087181,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.862868030871809,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.7128680308718085,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.562868030871808,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.412868030871808,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.262868030871807,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 7.112868030871807,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.962868030871807,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.812868030871806,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.662868030871806,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.512868030871806,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.362868030871805,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.212868030871805,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 6.062868030871805,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 5.912868030871804,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 5.762868030871804,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.425625481963806,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.2756254819638055,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.125625481963805,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.9756254819638053,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.8256254819638054,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.6756254819638055,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.5256254819638055,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [
+                    "brie cheese"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.6128680308718035,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.462868030871803,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.312868030871803,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.1628680308718025,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 5.012868030871802,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.862868030871802,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.712868030871801,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.562868030871801,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.412868030871801,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.2628680308718,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 4.1128680308718,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.9628680308718,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.8128680308718,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.6628680308718002,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.5128680308718003,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.3756254819638056,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.2256254819638057,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.075625481963806,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.925625481963806,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.775625481963806,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.625625481963806,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.475625481963806,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.3256254819638063,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.1756254819638063,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.0256254819638064,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.8756254819638065,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.7256254819638066,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.5756254819638067,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.4256254819638068,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.2756254819638069,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.125625481963807,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 0.9756254819638069,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 0.8256254819638069,
+                "y": 3.3628680308718004,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 95.0
+            },
+            "action": "WEST"
+        }
+    ],
+    [
+        {
+            "state": {
+                "x": 11.046278472723118,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 11.046278472723118,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.896278472723118,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.746278472723118,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.596278472723117,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.446278472723117,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.296278472723117,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 10.146278472723116,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.996278472723116,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.846278472723116,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.696278472723115,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.546278472723115,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.396278472723115,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.246278472723114,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 9.096278472723114,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.946278472723113,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.796278472723113,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.646278472723113,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.496278472723112,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.346278472723112,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.196278472723112,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 8.046278472723111,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.896278472723111,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.746278472723111,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.59627847272311,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.44627847272311,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.29627847272311,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 7.146278472723109,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.996278472723109,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.8462784727231085,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.696278472723108,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.546278472723108,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.3962784727231075,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.246278472723107,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.946278472723106,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.796278472723106,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.646278472723106,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.496278472723105,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.346278472723105,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.196278472723105,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.046278472723104,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.896278472723104,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.7462784727231035,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.596278472723103,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.177239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.327239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.477239995125839,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.627239995125839,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.77723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 8.92723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.07723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.22723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.37723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.527239995125841,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.677239995125841,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.827239995125842,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 9.977239995125842,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.127239995125842,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.277239995125843,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.427239995125843,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.577239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.727239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 10.877239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.027239995125845,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.177239995125845,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.327239995125845,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.477239995125846,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.627239995125846,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.777239995125846,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 11.927239995125847,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.077239995125847,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.227239995125847,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.377239995125848,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.527239995125848,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.677239995125849,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.827239995125849,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 12.97723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.12723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.27723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.42723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.57723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.727239995125851,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 13.877239995125851,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.027239995125852,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.177239995125852,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.327239995125852,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.477239995125853,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.627239995125853,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.777239995125854,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 14.927239995125854,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.077239995125854,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.227239995125855,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.377239995125855,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.527239995125855,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.677239995125856,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.827239995125856,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 15.977239995125856,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.127239995125855,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.277239995125854,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.427239995125852,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.57723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.72723999512585,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 16.877239995125848,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 17.027239995125846,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 17.177239995125845,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.146278472723102,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.996278472723102,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.8462784727231023,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.6962784727231024,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.5462784727231025,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.2462784727231027,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.327239995125844,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.477239995125842,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.62723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.77723999512584,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 17.927239995125838,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 18.077239995125836,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 18.047239995125835,
+                "has_basket": false,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.2462784727231027,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.5462784727231025,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.6962784727231024,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.8462784727231023,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 3.996278472723102,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.146278472723102,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.047239995125835,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.197239995125834,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.347239995125832,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.49723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "SOUTH"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.596278472723103,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.7462784727231035,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 4.896278472723104,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.046278472723104,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.196278472723105,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.346278472723105,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.496278472723105,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.646278472723106,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.796278472723106,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 5.946278472723106,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "EAST"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.64723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 6.096278472723107,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.946278472723106,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.796278472723106,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.646278472723106,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.496278472723105,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.346278472723105,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.196278472723105,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 5.046278472723104,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.896278472723104,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.7462784727231035,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.596278472723103,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.67723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.527239995125832,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.377239995125834,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.227239995125835,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 18.077239995125836,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.927239995125838,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.77723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.62723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.477239995125842,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.327239995125844,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.177239995125845,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 17.027239995125846,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.877239995125848,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.72723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.57723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.427239995125852,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.277239995125854,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 16.127239995125855,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.977239995125855,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.827239995125854,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.677239995125854,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.527239995125854,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.377239995125853,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.227239995125853,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 15.077239995125852,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.927239995125852,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.777239995125852,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.627239995125851,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.477239995125851,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.32723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.17723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 14.02723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.87723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.72723999512585,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.577239995125849,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.427239995125849,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.277239995125848,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 13.127239995125848,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.977239995125847,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.827239995125847,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.677239995125847,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.527239995125846,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.377239995125846,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.227239995125846,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 12.077239995125845,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.927239995125845,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.777239995125845,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.627239995125844,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.477239995125844,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.327239995125844,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.177239995125843,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 11.027239995125843,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.877239995125842,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.727239995125842,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.577239995125842,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.427239995125841,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.277239995125841,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 10.12723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.97723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.82723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.67723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.52723999512584,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.377239995125839,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.227239995125839,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 9.077239995125838,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.927239995125838,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.777239995125838,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.627239995125837,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.477239995125837,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.327239995125836,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.177239995125836,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 8.027239995125836,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.877239995125835,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.727239995125835,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.577239995125835,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.427239995125834,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.277239995125834,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 7.127239995125834,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.977239995125833,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.827239995125833,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.6772399951258326,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.527239995125832,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.377239995125832,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.2272399951258315,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 6.077239995125831,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 5.927239995125831,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.446278472723103,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.2962784727231025,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 4.146278472723102,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.996278472723102,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.8462784727231023,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.6962784727231024,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.5462784727231025,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [
+                    "garlic"
+                ],
+                "money": 100.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "INTERACT"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.77723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.62723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.47723999512583,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.327239995125829,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.177239995125829,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 5.027239995125829,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.877239995125828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.727239995125828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.577239995125828,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.427239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.277239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 4.1272399951258265,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.9772399951258266,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.8272399951258267,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.6772399951258268,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.527239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.377239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "NORTH"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.3962784727231026,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.2462784727231027,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 3.0962784727231027,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.946278472723103,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.796278472723103,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.646278472723103,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.496278472723103,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.346278472723103,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.1962784727231033,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 2.0462784727231034,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.8962784727231035,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.7462784727231035,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.5962784727231036,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.4462784727231037,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.2962784727231038,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 1.146278472723104,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 0.9962784727231039,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 0.8462784727231039,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        },
+        {
+            "state": {
+                "x": 0.6962784727231038,
+                "y": 3.227239995125827,
+                "has_basket": true,
+                "items_in_basket": [],
+                "money": 98.0
+            },
+            "action": "WEST"
+        }
+    ]
+]

@@ -452,16 +452,16 @@ def build_norm_prompt(
     lines.append("")
 
     # Group by broad category for readability
-    # recurring   = [h for h in abstract_hypotheses
-    #                if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
-    obligations = [h for h in abstract_hypotheses
-                   if h.norm_type == "obligation" and h.supporting_count < n_trajectories]
+    recurring    = [h for h in abstract_hypotheses
+                    if h.norm_type == "obligation" and h.supporting_count == n_trajectories]
+    obligations  = [h for h in abstract_hypotheses
+                    if h.norm_type == "obligation" and h.supporting_count < n_trajectories]
     prohibitions = [h for h in abstract_hypotheses if h.norm_type == "prohibition"]
     disjunctive  = [h for h in abstract_hypotheses
                     if h.norm_type in ("disjunctive_prohibition", "disjunctive_obligation")]
 
     groups = [
-        #("Recurring non-movement actions (appear in every trajectory)", recurring),
+        ("Recurring non-movement actions (appear in every trajectory)", recurring),
         ("Obligations", obligations),
         ("Prohibitions", prohibitions),
         ("Disjunctive Hypotheses", disjunctive),
