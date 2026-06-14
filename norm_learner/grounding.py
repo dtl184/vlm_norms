@@ -432,21 +432,28 @@ def build_norm_prompt(
 
     # --- Task and output format -------------------------------------------
     lines.append(
-        "TASK: Given the symbolic patterns and trajectory context above, identify "
-        "social norms that best explain why the agents consistently deviate from the "
-        "shortest path or include certain actions. A norm should capture the underlying "
-        "social rule, not merely describe what was observed.\n"
+        "TASK: Using the trajectory context and the symbolic hypotheses above, infer the "
+        "underlying social norms that best explain the observed behaviour. "
+        "The norms should capture the latent rule governing the agents' behaviour, "
+        "not simply restate the observed actions. Where appropriate, generalize beyond "
+        "the specific states and actions to a higher-level social rule.\n"
         "\n"
-        "Express each norm as a 4-tuple ⟨Context, Modality, Action, Type⟩:\n"
-        "  description: one concise English sentence describing the social norm\n"
-        "  context: list of contextual conditions as strings\n"
-        "  modality: \"obligatory\" | \"forbidden\" | \"permissible\"\n"
-        "  action: action schema string, e.g. \"push(agent, box)\"\n"
-        "  type: \"safety\" | \"cleanliness\" | \"politeness\" | \"convenience\"\n"
+        "Return a JSON array. Each element must contain the following fields:\n"
+        "  description: a concise English sentence describing the inferred social norm\n"
+        "  context: a list of contextual conditions under which the norm applies\n"
+        "  modality: one of \"obligatory\", \"forbidden\", or \"permissible\"\n"
+        "  action: an abstract description of the action or behaviour governed by the norm\n"
+        "  norm_type: one of \"safety\", \"cleanliness\", \"politeness\", or \"convenience\"\n"
         "\n"
-        "Output only a JSON array, no prose before or after:\n"
-        '[{"context": ["cond1", ...], "modality": "obligatory|forbidden|permissible", '
-        '"action": "...", "norm_type": "safety|cleanliness|politeness|convenience"}]'
+        "The response must be valid JSON and contain no additional text. "
+        "Use exactly the following schema:\n"
+        "[{\n"
+        '  "description": "<string>",\n'
+        '  "context": ["<string>", "..."],\n'
+        '  "modality": "<obligatory|forbidden|permissible>",\n'
+        '  "action": "<string>",\n'
+        '  "norm_type": "<safety|cleanliness|politeness|convenience>"\n'
+        "}]"
     )
 
     return "\n".join(lines)
