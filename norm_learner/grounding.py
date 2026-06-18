@@ -188,7 +188,9 @@ def _format_transition(sa: tuple, env: "EnvironmentInterface") -> str:
     action_desc = env.describe_action(a)
     if post is not None and post != s:
         post_desc = env.describe_state(post)
-        return f"{action_desc}  |  pre: {pre_desc}  →  post: {post_desc}"
+        semantic = env.describe_transition(s, a, post)
+        label = semantic if semantic else action_desc
+        return f"{label}  |  pre: {pre_desc}  →  post: {post_desc}"
     return f"{action_desc} from {pre_desc} (no state change)"
 
 
@@ -358,6 +360,33 @@ def _format_world_state(ws: WorldState) -> str:
     return ", ".join(f"{k}={v}" for k, v in ws.items())
 
 
+def _extract_key_events(
+    trajectory: "Trajectory",
+    env: "EnvironmentInterface",
+) -> list[str]:
+    """
+    Walk an abstract trajectory and return a human-readable label for each
+    step where the abstract state actually changed (consecutive-state diff).
+
+    Using observed state transitions rather than the model's successor()
+    avoids counting repeated INTERACT attempts that didn't change state.
+    """
+    events: list[str] = []
+    for i in range(len(trajectory) - 1):
+        pre_state, action = trajectory[i]
+        post_state, _ = trajectory[i + 1]
+        if post_state == pre_state:
+            continue
+        label = env.describe_transition(pre_state, action, post_state)
+        if label is None:
+            label = (
+                f"{env.describe_action(action)}: "
+                f"{env.describe_state(pre_state)} → {env.describe_state(post_state)}"
+            )
+        events.append(label)
+    return events
+
+
 def build_naturalization_prompt(
     trajectory: "Trajectory",
     env: "EnvironmentInterface",
@@ -365,21 +394,33 @@ def build_naturalization_prompt(
     """
     Step 1 of two-step LLM grounding.
 
-    Sends only the first and last (state, action) pairs to the LLM and asks it
-    to describe pre- and post-conditions in plain English.
+    Summarises the key state-changing events in the trajectory and asks the LLM
+    to describe the agent's behaviour — including what they consistently did and
+    what they appeared to avoid.
     """
     if not trajectory:
         return ""
-    first_state, first_action = trajectory[0]
-    last_state, last_action = trajectory[-1]
-    return "\n".join([
-        "An agent completed a task. Based on the first and last observed state-action"
-        " pairs below, describe the pre-conditions and post-conditions in 1-2 plain"
-        " English sentences.",
+
+    events = _extract_key_events(trajectory, env)
+    start_state = trajectory[0][0]
+    end_state = trajectory[-1][0]
+
+    lines = [
+        "An agent completed a task. Below are the key state-changing events "
+        "observed in the trajectory, in order.",
         "",
-        f"First: {env.describe_action(first_action)} from {env.describe_state(first_state)}",
-        f"Last:  {env.describe_action(last_action)} from {env.describe_state(last_state)}",
-    ])
+        f"Starting state: {env.describe_state(start_state)}",
+    ]
+    for i, ev in enumerate(events, 1):
+        lines.append(f"  Event {i}: {ev}")
+    lines.append(f"Final state:    {env.describe_state(end_state)}")
+    lines.append("")
+    lines.append(
+        "In 2-3 sentences, describe what this agent did and what actions they "
+        "appeared to avoid or never attempt, given what would have been possible "
+        "in this environment."
+    )
+    return "\n".join(lines)
 
 
 def build_norm_prompt(
@@ -452,13 +493,23 @@ def build_norm_prompt(
 
     # --- Task and output format -------------------------------------------
     lines.append(
-        "TASK: Using the trajectory context and the symbolic hypotheses above, infer the "
-        "underlying social norms that best explain the observed behaviour. "
-        "Not every obligation is a social norm — some are merely necessary task steps "
-        "(e.g. picking up a basket to shop). Focus on obligations that represent a "
-        "rule of conduct an agent could violate if they chose to, not just a mechanical "
-        "prerequisite. Where appropriate, generalize beyond the specific states and "
-        "actions to a higher-level social rule.\n"
+        "TASK: Using the trajectory summaries and symbolic hypotheses above, infer the "
+        "social norms that best explain the observed behaviour. Consider two kinds:\n"
+        "\n"
+        "1. OBLIGATORY norms — actions the agent always performed that represent a "
+        "rule of conduct they could have violated (e.g. paying before leaving). "
+        "Exclude mere mechanical prerequisites (e.g. picking up a basket to be able "
+        "to shop is not a social norm — it is simply how the task works).\n"
+        "\n"
+        "2. FORBIDDEN norms — actions the agent could plausibly have taken but "
+        "consistently avoided across every trajectory. Infer these from the "
+        "trajectory summaries and your knowledge of the environment: what did the "
+        "agent never do that a norm-violating agent might do? (e.g. accumulating an "
+        "unreasonable number of items, leaving without returning the basket, "
+        "abandoning unpaid items). Only include prohibitions that are plausible "
+        "social rules in the environment described, not physical impossibilities.\n"
+        "\n"
+        "Where appropriate, generalise beyond specific states to a higher-level rule.\n"
         "\n"
         "Return a JSON array. Each element must contain the following fields:\n"
         "  description: a concise English sentence describing the inferred social norm\n"

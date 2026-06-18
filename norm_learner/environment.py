@@ -41,6 +41,17 @@ class EnvironmentInterface(ABC):
         """Return the state reached by taking *action* in *state*, or None."""
         return None  # subclasses override when they have a transition model
 
+    def describe_transition(self, pre: State, action: Action, post: State) -> str | None:
+        """
+        Return a human-readable semantic label for a (pre, action, post) triple,
+        or None to fall back to the generic action label.
+
+        Override in environment subclasses to give meaningful names to transitions
+        whose semantics differ depending on context (e.g. INTERACT can mean
+        "pick up basket", "pick up item", or "pay at checkout").
+        """
+        return None
+
     # ------------------------------------------------------------------
     # Semantic interface — required by the grounding layer
     # ------------------------------------------------------------------

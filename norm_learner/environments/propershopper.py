@@ -144,6 +144,19 @@ class ProperShopperEnvironment(EnvironmentInterface):
     def describe_action(self, action: Action) -> str:
         return str(action)
 
+    def describe_transition(self, pre: State, action: Action, post: State) -> str | None:
+        if action != "INTERACT":
+            return None
+        hb_pre, hi_pre = pre
+        hb_post, hi_post = post
+        if not hb_pre and hb_post:
+            return "pick up shopping basket"
+        if hb_pre and not hi_pre and hi_post:
+            return "pick up item from shelf"
+        if hb_pre and hi_pre and not hi_post:
+            return "pay at checkout (items purchased, money deducted)"
+        return None
+
     def extract_semantic_features(self, state: State) -> WorldState:
         hb, hi = state
         return {
