@@ -180,6 +180,18 @@ def _format_pair(sa: tuple, env: "EnvironmentInterface") -> str:
     return f"{env.describe_action(a)} from {env.describe_state(s)}"
 
 
+def _format_transition(sa: tuple, env: "EnvironmentInterface") -> str:
+    """Format a state-action pair as a pre→post transition string."""
+    s, a = sa
+    post = env.successor(s, a)
+    pre_desc = env.describe_state(s)
+    action_desc = env.describe_action(a)
+    if post is not None and post != s:
+        post_desc = env.describe_state(post)
+        return f"{action_desc}  |  pre: {pre_desc}  →  post: {post_desc}"
+    return f"{action_desc} from {pre_desc} (no state change)"
+
+
 def build_abstract_hypotheses(
     symbolic_state: "NormLearnerState",
     env: "EnvironmentInterface",
@@ -219,17 +231,22 @@ def build_abstract_hypotheses(
 
     # --- Action always taken (confirmed obligation) -----------------------
     for sa in sorted(symbolic_state.obligations, key=str):
+        s, a = sa
+        pre = env.extract_semantic_features(s)
+        post_state = env.successor(s, a)
+        post = env.extract_semantic_features(post_state) if post_state is not None else {}
+        delta = _diff_world_states(pre, post)
         hypotheses.append(
             AbstractNormHypothesis(
                 norm_type="obligation",
                 symbolic_pairs=[sa],
                 trajectory_ids=[],
-                pre_conditions={},
-                post_conditions={},
-                state_delta={},
+                pre_conditions=pre,
+                post_conditions=post,
+                state_delta=delta,
                 symbolic_summary=(
                     f"Action taken in every trajectory: "
-                    f"{_format_pair(sa, env)}"
+                    f"{_format_transition(sa, env)}"
                 ),
                 supporting_count=len(symbolic_state.demonstrations),
             )
@@ -370,6 +387,7 @@ def build_norm_prompt(
     n_trajectories: int,
     nl_context: str | None = None,
     existing_norms: list[GroundedNorm] | None = None,
+    env_description: str | None = None,
 ) -> str:
     """
     Step 2 of two-step LLM grounding — norm-discovery prompt.
@@ -383,6 +401,12 @@ def build_norm_prompt(
     4. Output format instructions.
     """
     lines: list[str] = []
+
+    # --- Environment description ------------------------------------------
+    if env_description:
+        lines.append("ENVIRONMENT:")
+        lines.append(env_description.strip())
+        lines.append("")
 
     # --- Natural-language context -----------------------------------------
     if nl_context:
@@ -415,10 +439,6 @@ def build_norm_prompt(
         for hyp in shown:
             for ln in hyp.symbolic_summary.strip().split("\n"):
                 lines.append(f"  {ln}")
-            if hyp.pre_conditions:
-                lines.append(f"  Pre:  {_format_world_state(hyp.pre_conditions)}")
-            if hyp.post_conditions:
-                lines.append(f"  Post: {_format_world_state(hyp.post_conditions)}")
         if len(group) > _MAX_HYPOTHESES_IN_PROMPT:
             lines.append(f"  … and {len(group) - _MAX_HYPOTHESES_IN_PROMPT} more")
         lines.append("")
@@ -434,9 +454,11 @@ def build_norm_prompt(
     lines.append(
         "TASK: Using the trajectory context and the symbolic hypotheses above, infer the "
         "underlying social norms that best explain the observed behaviour. "
-        "The norms should capture the latent rule governing the agents' behaviour, "
-        "not simply restate the observed actions. Where appropriate, generalize beyond "
-        "the specific states and actions to a higher-level social rule.\n"
+        "Not every obligation is a social norm — some are merely necessary task steps "
+        "(e.g. picking up a basket to shop). Focus on obligations that represent a "
+        "rule of conduct an agent could violate if they chose to, not just a mechanical "
+        "prerequisite. Where appropriate, generalize beyond the specific states and "
+        "actions to a higher-level social rule.\n"
         "\n"
         "Return a JSON array. Each element must contain the following fields:\n"
         "  description: a concise English sentence describing the inferred social norm\n"

@@ -220,11 +220,19 @@ class NormLearner:
                 logger.warning("Naturalization LLM call failed: %s", exc)
 
         # --- Step 2: norm-discovery prompt with NL context -------------------
+        env_desc: str | None = None
+        if hasattr(self.env, "get_environment_description"):
+            try:
+                env_desc = self.env.get_environment_description()
+            except Exception:
+                pass
+
         prompt = build_norm_prompt(
             abstract_hyps,
             len(self._trajectory_records),
             nl_context=nl_context,
             existing_norms=self._grounded_norms or None,
+            env_description=env_desc,
         )
         self._last_prompt = prompt
         logger.debug("Norm-discovery prompt (first 500 chars):\n%s", prompt[:500])
