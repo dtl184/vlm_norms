@@ -163,8 +163,7 @@ def main() -> None:
     env = ProperShopperEnvironment()
     trajectories = env.load_trajectories(raw_trajectories)
 
-    print(f"Abstract state: (coarse_gx, coarse_gy, has_basket, has_items)")
-    print(f"Cell size     : {env.cell_size} sim-units = {env.STEPS_PER_CELL} raw steps\n")
+    print(f"Abstract state: (has_basket, has_items)\n")
 
     # --- LLM backend ----------------------------------------------------------
     if args.llm == "mock":
